@@ -1,7 +1,38 @@
 \section{Blockchain}
 
+    Antes de apresentar os conceitos relacionados diretamento ao Blockchain, precisamos primeiro elucidar o conceito de Sistema distribuído, pois este serve
+    base para a compreensão do conceito e dos princípios existentes no blockchain.
+
 \subsection[]{Sistemas Distribuídos}
 
+    Varias definições de sistemas distribuidos foram dadas nos diversos materiais disponíveis na litetura.Para o propósito deste trabalho, pode-se dizer que: "Um sistema distribuído é uma coleção de 
+    elementos computacionais autônomos que para os usuários parecem ser um único sistema coerente. Um elemento computacional, normalmente chamado de nó, pode
+    ser tanto um dispositivo de hardware ou um processo de software.\cite{sistemas_distribuidos_tanembaum}
+
+    Um nó pode ser definido como um "jogador individual",onde em um sistema distribuído todos os nós tem a capacidade de enviar e receber mensagem entre eles. Estes
+    nós podem ser honestos, faltantes ou maliciosos e podem ter sua própria memória e processador. Um nó que apresenta um comportamento arbitrário também é
+    chamado de Nó Bizantino.\cite{mastering_blockchain}
+
+    O maior desafio em sistemas distribuidos é a coordenação entre esses nós e a tolerância a falha.Pois mesmo que um determinado nó apresente uma cada de conexão
+    ou caso este esteja faltante o sistema deve tolerar estes problemas e continuar seu funcionamento de forma a alcançar o objetivo estabelecido. Estes sistemas 
+    são considerados tão desafiadores que o teorema de CAP foi desenvolvido e provado, e o mesmo determina que um sistema distribuído não pode ter todas as propriedades
+    de forma conjunta.
+
+    \subsubsection{Teorema de CAP}
+
+        Este teorema também é conhecido como \textit{Brewer's Theorem},foi introduzido inicialmente em 1998 por Eric Brewer; e provado como um teorema em 2002 por
+        Seth Gilbert e Nancy Lynch.
+
+        O teorema determina que um sistema distribuído não pode ter Consistência, Disponibilidade e Tolerância a Partição de forma simultânea \cite{brewer_distributed}.A
+        seguir cada um destes é explicado de forma rápida:
+
+        \begin{itemize}
+            \item \textbf{Consistência:} essa propridade garante que todos os nós presentes em um sistema distribuido possuem uma cópia única da última informação;
+            \item \textbf{Disponibilidade:} essa propriedade garante que um sistema está disponível, acessível para uso, e aceitando novas requisições e respondendo
+        com os dados sem nenhuma falha e sempre quando é requisitado;
+            \item \textbf{Tolerância a Partição:} garante que caso um grupo de nós falhe, o sistema distribuido ainda continua a operar corretamente.
+        \end{itemize}
+            
 
 \subsection[]{Introdução Ao Blockchain}
 
@@ -22,6 +53,7 @@
     
     \subsubsection{Descentralização}
 
+    
         \subsubsection{Descentralização no Blockchain}
 
         \subsubsection{Ecossistema da descentralização}
