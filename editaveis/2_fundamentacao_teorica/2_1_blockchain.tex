@@ -1,44 +1,69 @@
 \section{Blockchain}
 
-    Antes de apresentar os conceitos relacionados diretamento ao Blockchain, precisamos primeiro elucidar o conceito de Sistema distribuído, pois este serve
+    Antes de apresentar os conceitos relacionados diretamente ao Blockchain, precisamos primeiro elucidar o conceito de Sistema distribuído, pois este serve
     base para a compreensão do conceito e dos princípios existentes no blockchain.
 
 \subsection[]{Sistemas Distribuídos}
 
-    Varias definições de sistemas distribuidos foram dadas nos diversos materiais disponíveis na litetura.Para o propósito deste trabalho, pode-se dizer que: "Um sistema distribuído é uma coleção de 
-    elementos computacionais autônomos que para os usuários parecem ser um único sistema coerente. Um elemento computacional, normalmente chamado de nó, pode
-    ser tanto um dispositivo de hardware ou um processo de software.\cite{sistemas_distribuidos_tanembaum}
+    Varias definições de sistemas distribuídos foram dadas nos diversos materiais disponíveis na literatura.Para o propósito deste trabalho, pode-se dizer que: "Um sistema distribuído é uma coleção de elementos computacionais autônomos que para os usuários parecem ser um único sistema coerente. Um elemento computacional, normalmente chamado de nó, pode ser tanto um dispositivo de hardware ou um processo de software.\cite{sistemas_distribuidos_tanembaum}
 
-    Um nó pode ser definido como um "jogador individual",onde em um sistema distribuído todos os nós tem a capacidade de enviar e receber mensagem entre eles. Estes
-    nós podem ser honestos, faltantes ou maliciosos e podem ter sua própria memória e processador. Um nó que apresenta um comportamento arbitrário também é
-    chamado de Nó Bizantino.\cite{mastering_blockchain}
+    Um nó pode ser definido como um "jogador individual",onde em um sistema distribuído todos os nós tem a capacidade de enviar e receber mensagem entre eles. Estes nós podem ser honestos, faltantes ou maliciosos e podem ter sua própria memória e processador. Um nó que apresenta um comportamento arbitrário também é chamado de Nó Bizantino.\cite{mastering_blockchain}
 
-    O maior desafio em sistemas distribuidos é a coordenação entre esses nós e a tolerância a falha.Pois mesmo que um determinado nó apresente uma cada de conexão
+    O maior desafio em sistemas distribuídos é a coordenação entre esses nós e a tolerância a falha.Pois mesmo que um determinado nó apresente uma cada de conexão
     ou caso este esteja faltante o sistema deve tolerar estes problemas e continuar seu funcionamento de forma a alcançar o objetivo estabelecido. Estes sistemas 
-    são considerados tão desafiadores que o teorema de CAP foi desenvolvido e provado, e o mesmo determina que um sistema distribuído não pode ter todas as propriedades
-    de forma conjunta.
+    são considerados tão desafiadores que o teorema de CAP foi desenvolvido e provado, e o mesmo determina que um sistema distribuído não pode ter todas as propriedades de forma conjunta.
 
     \subsubsection{Teorema de CAP}
 
-        Este teorema também é conhecido como \textit{Brewer's Theorem},foi introduzido inicialmente em 1998 por Eric Brewer; e provado como um teorema em 2002 por
-        Seth Gilbert e Nancy Lynch.
+        Este teorema também é conhecido como \textit{Brewer's Theorem},foi introduzido inicialmente em 1998 por Eric Brewer; e provado como um teorema em 2002 por Seth Gilbert e Nancy Lynch.
 
         O teorema determina que um sistema distribuído não pode ter Consistência, Disponibilidade e Tolerância a Partição de forma simultânea \cite{brewer_distributed}.A
         seguir cada um destes é explicado de forma rápida:
 
         \begin{itemize}
-            \item \textbf{Consistência:} essa propridade garante que todos os nós presentes em um sistema distribuido possuem uma cópia única da última informação;
-            \item \textbf{Disponibilidade:} essa propriedade garante que um sistema está disponível, acessível para uso, e aceitando novas requisições e respondendo
+            \item \textbf{Consistência:} é a propriedade que garante que todos os nós em um sistema distribuído possuem pelo menos uma cópia atualizada dos dados;
+            \item \textbf{Disponibilidade:} essa propriedade garante que um sistema está disponível, acessível para uso, e aceitando novas requisições e respondendo-as;
         com os dados sem nenhuma falha e sempre quando é requisitado;
-            \item \textbf{Tolerância a Partição:} garante que caso um grupo de nós falhe, o sistema distribuido ainda continua a operar corretamente.
+            \item \textbf{Tolerância a Partição:} garante que caso um grupo de nós falhe, o sistema distribuído ainda continua a operar corretamente.
         \end{itemize}
-            
+    
+    Na seção XXXXX será explicado mais esse conceito, e como o mesmo influenciou na implementação do blockchain.
 
+   
 \subsection[]{Introdução Ao Blockchain}
+
+    
+    Em 2008 um hacker anônimo (ou um grupo de hackers), utilizando o pseudônimo Satoshi Nakamoto, lançou a primeira moeda totalmente virtual e pouco tempo divulgou um artigo \cite{bitcoin_satoshi}. Esse artigo
+    denominado de \textit{Bitcoin: A Peer-to-Peer Electronic Cash System} detalhava os métodos para o uso de uma rede peer-to-peer para gerar o que era descrito como "um sistema para transações eletrônicas sem abnegar a confiança".
+    
+    O Bitcoin transformou totalmente os conceitos de bancos,dinheiro, processos de pagamentos entre outros; criando um único registro digital acessível universalmente chamado de Blockchain. Foi atribuído esse nome de corrente porque mudanças só podem ser realizadas adicionando novas informações ao final, como em uma corrente de ferro, e cada nova adição à esta corrente contém um determinado números de transações.
 
     \subsubsection{Definição}
 
+    Existem diversas definições de Blockchain; essa definição depende do seu ponto de vista em relação a esse assunto. Caso a definição seja olhada de um ponto de vista empresarial isso pode ser definido nesse contexto, caso a definição seja observada sob uma perspectiva técnica poderá ter uma definição um pouco diferente.
+    
+    Pode se definir blockchain, em termos gerais, como: "Um registro peer-to-peer distribuído que é criptograficamente seguro, onde somente é possível adicionar novos dados, imutável, e editável somente via consenso ou acordo entre os nós" \cite{mastering_blockchain}.
+    
+    De um ponto de vista empresarial, podemos caracterizar Blockchain como uma plataforma onde diferentes nós podem realizar troca de valores utilizando transações sem a necessidade de uma terceira parte autenticadora.
+    
     \subsubsection{Elementos do Blockchain}
+    
+    Nesta seção serão apresentados os elementos genéricos do blockchain, ordenados de forma alfabética. Uma explicação mais precisa desses elementos será apresentada ao decorrer do documento, no contexto em que o mesmo é aplicado dentro do blockchain.
+    
+        \begin{itemize}
+            \item \textbf{Bloco(Block):} É composto por múltiplas transações e alguns outros elementos como o hash do bloco anterior, o \textit{timestamp}, e um identificador único; 
+            
+            \item \textbf{Endereço(Addresses):} São identificadores únicos usados em transações no blockchain para referenciar os pagadores e recebedores. Esse endereço normalmente é uma chave pública ou uma derivação da mesma;
+            
+            \item \textbf{Nós(Nodes):} Um nó em uma rede blockchain pode desempenhar diferentes funções dependendo do papel que é atribuído ao mesmo. Um nó pode propor e validar transações e desempenhar a mineração para garantir o consenso e segurança do blockchain.
+            
+            \item \textbf{Contratos Inteligentes(Smart Contracts):} São considerados programas que são executados no "topo" de uma rede Blockchain, onde os mesmos contém as regras de negócio executadas quando determinadas condições são atingidas.
+            
+            \item \textbf{Transação(Transaction):} Representa a transferência de um determinado atributo, como um valor, de um endereço para outro;
+            
+            
+            
+        \end{itemize}
 
     \subsubsection{Tipos de Blockchain}
 
@@ -46,14 +71,14 @@
 
     \subsubsection{Bloco}
 
+        Um bloco é composto de uma seleção de transações organizadas de forma ordenada para que ocorra uma organização lógica. Esse bloco é composto por transações, e também contém uma referência ao bloco anterior. A estrutura do bloco varia de acordo com o tipo e design do blockchain.\cite{mastering_blockchain}
+        
         \subsubsection{A estrutura do bloco}
                 % Estrutura do cabeçalho de um bloco
-
         \subsubsection{The genesis block}
     
     \subsubsection{Descentralização}
 
-    
         \subsubsection{Descentralização no Blockchain}
 
         \subsubsection{Ecossistema da descentralização}
