@@ -1,9 +1,155 @@
-\section{Blockchain}
 
-    Antes de apresentar os conceitos relacionados diretamente ao Blockchain, precisamos primeiro elucidar o conceito de Sistema distribuído, pois este serve
-    base para a compreensão do conceito e dos princípios existentes no blockchain.
+\section{Conceitos de segurança}
 
-\subsection[]{Sistemas Distribuídos}
+    O NIST Computer Security Handbook[NIST95] \ref{nist95}, define segurança computacional como:
+    
+     \begin{quote}
+        "A proteção oferecida a um sistema de informações automatizado para atingir os objetivos aplicáveis de preservar a integridade, a disponibilidade e a confidencialidade dos recursos do sistema de informações (incluindo hardware, software, firmware, informações / dados e telecomunicações)."
+     \end{quote}
+     
+     Stallings fala em seu livro \cite{cryptograpy_and_network_stallings} que está definição introduz os três objetivos chaves da segurança computacional, que estão descritos a seguir:
+        
+        \begin{itemize}
+            \item \textbf{Confidentiality:} assegura que uma informação privada ou confidencial não estará disponível para indíviduos não autorizados, e que o indivíduo tem controle sob suas informações;
+            \item \textbf{Integrity:} assegura que as informações e as aplicações são modificadas somente por indivíduos autorizados, e que os sistemas sejam executadas de forma que não haja manipulações por terceiros;
+            \item \textbf{Disponibilidade:} Assegura que os sistemas estão prontamente sendo executadas e que os serviços não são negados para usuários autorizados.
+        \end{itemize}
+
+    \subsection{Criptografia}
+    
+    A criptografia é o componente mais importante do blockchain. Ela é certamente um campo de pesquisa em si mesmo, e é baseada em técnicas matemáticas avançadas que são bastante complexas. Houveram muitas falhas relatadas em carteiras e trocas de informações devido ao design mais fraco ou implementações criptográficas pobres.\cite{beginnig_blockchain_bikramaditya}
+    
+    Qualquer informação na forma de uma mensagem de texto, dados numéricos ou um programa de computador pode ser chamada de texto simples. A ideia é criptografar o texto simples usando um algoritmo de criptografia e uma chave que produza o texto cifrado. O texto cifrado pode então ser transmitido ao destinatário pretendido, que o descriptografa usando o algoritmo de descriptografia e a chave para obter o texto simples.\cite{beginnig_blockchain_bikramaditya}
+    
+    Em geral, existem dois tipos de criptografia: criptografia de chave simétrica e criptografia de chave assimétrica (por exemplo, chave pública) . A seguir serão explicados um pouco mais sobre cada um desses tipos.
+
+        \subsubsection{Modelo de criptografia simétrica}
+        
+            A criptografia simétrica é um sistema criptográfico no qual a criptografia e a descriptografia são executadas usando a mesma chave. Também é conhecido como criptografia convencional. A criptografia simétrica transforma o texto simples em texto cifrado usando uma chave secreta e um algoritmo de criptografia. Usando a mesma chave e um algoritmo de descriptografia, o texto original é recuperado do texto cifrado.\cite{cryptograpy_and_network_stallings}
+            
+            Assume-se que é impraticável descriptografar uma mensagem com base no texto cifrado e no conhecimento do algoritmo de criptografia / descriptografia. Em outras palavras, não é necessário manter o algoritmo secreto; precisa-se manter apenas o segredo da chave. Esse recurso de criptografia simétrica é o que o torna viável para uso generalizado. Com o uso de criptografia simétrica, o principal problema de segurança é manter o sigilo da chave \cite{cryptograpy_and_network_stallings}.
+            
+            A imagem \ref{fig:imagem_criptografia_simetrica} a seguir representa como é o funcionamento da criptografia simétrica:
+            
+            \begin{figure}[H]
+                 \centering
+                 \includegraphics[scale=0.6]{figuras/capitulo_2/criptografia_simetrica.png}
+                 \caption{Criptografia Simétrica - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}}
+                 \label{fig:imagem_criptografia_simetrica}
+            \end{figure}
+            
+            A criptografia de chave simétrica existe em duas variantes: \textit{stream ciphers} e \textit{block ciphers} \cite{beginnig_blockchain_bikramaditya}.
+            
+            Uma \textbf{cifra de fluxo(stream cipher)} é a variante que criptografa um fluxo de dados digital, um bit ou um byte de cada vez. Se o fluxo de chaves criptográficas for aleatório, essa cifra é inquebrável por qualquer outro meio que não seja a aquisição do fluxo de chaves. No entanto, o fluxo de chaves deve ser fornecido aos dois usuários antecipadamente por meio de um canal independente e seguro. Isso introduz problemas logísticos insuperáveis se o tráfego de dados pretendido for muito grande.\cite{cryptograpy_and_network_stallings}
+            
+            Consequentemente, por razões práticas, o gerador de fluxo de bits deve ser implementado como um procedimento algorítmico, de modo que o fluxo de bits criptográfico possa ser produzido por ambos os usuários. Nesta abordagem (Figura \ref{fig:imagem_stream_cipher}), o gerador de fluxo de bits é um algoritmo controlado por chave e deve produzir um fluxo de bits criptograficamente fortes. Agora, os dois usuários precisam compartilhar apenas a chave geradora, e cada um pode produzir o fluxo de chaves.\cite{cryptograpy_and_network_stallings}
+        
+            
+                \begin{figure}[H]
+                     \centering
+                     \includegraphics[scale=0.7]{figuras/capitulo_2/stream_cipher_generator.png}
+                     \caption{Stream cipher - Imagem retirada de \cite{cryptograpy_and_network_stallings}}
+                     \label{fig:imagem_stream_cipher}
+                \end{figure}
+        
+            Uma \textbf{cifra de bloco(block cipher)} é aquela em que um bloco de texto simples é tratado como um todo e usado para produzir um bloco de texto cifrado de comprimento igual. Normalmente, um tamanho de bloco de 64 ou 128 bits é usado. Como com uma cifra de fluxo, os dois usuários compartilham uma chave de criptografia simétrica (Figura \ref{fig:imagem_block_cipher})
+
+                \begin{figure}[H]
+                     \centering
+                     \includegraphics[scale=0.7]{figuras/capitulo_2/block_cipher.png}
+                     \caption{Block cipher - Imagem retirada de \cite{cryptograpy_and_network_stallings}}
+                     \label{fig:imagem_block_cipher}
+                \end{figure}
+            
+            
+        \subsubsection{Modelo de criptografia assimétrico}
+        
+                Criptografia de chave assimétrica, também conhecida como “criptografia de chave pública”, é um conceito revolucionário introduzido por Diffie e Hellman. Com essa técnica, eles resolveram o problema da distribuição de chaves em um sistema de criptografia simétrica, introduzindo assinaturas digitais.\cite{beginnig_blockchain_bikramaditya}
+                
+                Antes de prosseguir, deve-se falar sobre um grande equívoco comum em relação a criptografia de chave pública. Esse equívoco é que a criptografia de chave pública é mais segura da análise criptográfica do que a criptografia simétrica. De fato, a segurança de qualquer esquema de criptografia depende do tamanho da chave e da trabalho computacional envolvido em quebrar uma cifra. Não há nada em princípio sobre criptografia simétrica ou de chave pública(assimétrica que a torne superior a outra do ponto de vista da resistência à criptoanálise \cite{cryptograpy_and_network_stallings}.
+
+                A criptografia assimétrica é um sistema criptográfico na qual a criptografia
+                e descriptografia são realizadas usando as diferentes chaves - uma chave pública e uma chave privada.A criptografia assimétrica transforma o texto simples em texto cifrado usando uma das duas chaves e um algoritmo de criptografia. Usando a chave emparelhada e um algoritmo de desencriptação, o texto original é recuperado a partir do texto cifrado. A criptografia assimétrica pode ser usada para confidencialidade, autenticação, ou ambos   \cite{cryptograpy_and_network_stallings}.
+
+                A figura \ref{fig:public_private_encryption} explica como um remetente criptografa os dados usando a chave pública de um destinatário e, em seguida, é transmitido pela rede para o receptor. Uma vez que chegue ao receptor, ele pode ser descriptografado usando a chave privada do receptor. Desta forma, a chave privada permanece no lado do receptor e não há necessidade de compartilhar chaves, a fim de realizar a criptografia e descriptografia, que é o caso da criptografia simétrica \cite{mastering_blockchain}.
+
+                    \begin{figure}[H]
+                         \centering
+                         \includegraphics[scale=0.6]{figuras/capitulo_2/public_private_encryption.png}
+                         \caption{Criptografia Assimétrica para Confidencialidade - Imagem retirada de \cite{mastering_blockchain}}
+                         \label{fig:public_private_encryption}
+                    \end{figure}
+                    
+                    
+                A figura \ref{fig:public_private_signature} mostra como a criptografia de chave pública pode ser usada para verificar a integridade da mensagem recebida pelo receptor. Nesse modelo, o remetente assina os dados usando sua chave privada e transmite a mensagem para o receptor. Quando a mensagem é recebida no lado do receptor, pode ser verificada por sua integridade pela chave pública do remetente. Observe que não há criptografia sendo executada neste modelo \cite{mastering_blockchain}. Este modelo é usado apenas para fins de autenticação e validação de mensagens:
+                    
+                    \begin{figure}[H]
+                         \centering
+                         \includegraphics[scale=0.7]{figuras/capitulo_2/public_private_signature.png}
+                         \caption{Criptografia Assimétrica para Assinatura - Imagem retirada de \cite{mastering_blockchain}}
+                         \label{fig:public_private_signature}
+                    \end{figure}
+                    
+    \subsection{Funções Hash}
+        
+        Funções hash são as funções criptográficas primitivas matemáticas mais importantes e são parte integrante da estrutura de dados de blockchain. Elas são amplamente utilizadas em muitos protocolos criptográficos, aplicativos de segurança da informação, como assinaturas digitais e códigos de autenticação de mensagens (MACs) \cite{beginnig_blockchain_bikramaditya}.
+        
+        Uma função hash H aceita um bloco de comprimento variável de dados M como entrada e produz um valor de hash de tamanho fixo h = H (M). Uma boa função de hash tem a propriedade de que os resultados da aplicação da função à um grande conjunto de entradas produzirá saídas uniformemente distribuídas e aparentemente aleatórias. Em termos gerais, o objetivo principal de uma função hash é a integridade dos dados. Uma mudança em qualquer bit ou bits em M resulta, com alta probabilidade, em uma mudança no código hash.\cite{cryptograpy_and_network_stallings}
+        
+        O tipo de função hash necessária para aplicativos de segurança é chamada de \textbf{função hash criptográfica}. Uma função hash criptográfica é um algoritmo para o qual é computacionalmente inviável (porque nenhum ataque é significativamente mais eficiente que a força bruta) para encontrar (a) um objeto de dados que mapeia para um resultado de hash pré-especificado (a propriedade unidirecional) ou (b) dois objetos de dados que mapeiam para o mesmo resultado de hash (a propriedade livre de colisão). Devido a essas características, as funções hash costumam ser usadas para determinar se os dados foram alterados ou não.\cite{cryptograpy_and_network_stallings}
+
+        A Figura \ref{fig:hash_function} mostra o funcionamento geral de uma função hash criptográfica. Normalmente, a entrada é preenchida com um inteiro múltiplo de algum comprimento fixo (por exemplo, 1024 bits) e o preenchimento inclui o valor do comprimento da mensagem original em bits. O campo de comprimento é uma medida de segurança para aumentar a dificuldade de um invasor para produzir uma mensagem alternativa com o mesmo valor de hash.\cite{cryptograpy_and_network_stallings}
+    
+                \begin{figure}[H]
+                     \centering
+                     \includegraphics[scale=0.5]{figuras/capitulo_2/hash_function.png}
+                     \caption{Função Hash - Imagem retirada de \cite{cryptograpy_and_network_stallings}}
+                     \label{fig:hash_function}
+                \end{figure}
+                
+        Uma das mais antigas funções de hash, ou função de compressão, é a função hash MD4, que pertence à família message digest (MD). Entre os membros da família MD temos MD5 e MD6, e muitas outras variantes do MD4, como o RIPEMD. A família de algoritmos MD produz um resumo de mensagens de 128 bits consumindo blocos de 512 bits. Eles foram amplamente utilizados como checksums para verificar a integridade dos dados.\cite{beginnig_blockchain_bikramaditya}
+        
+        Outra família de funções hash amplamente utilizada é a \textbf{Algoritmo Secure Hash(SHA)}. Existem basicamente quatro algoritmos nessa família: SHA-0, SHA-1, SHA-2 e SHA-3. \cite{beginnig_blockchain_bikramaditya}
+
+    
+        \subsubsection{Ponteiros Hash}
+        
+            Um \textbf{ponteiro de hash(hash pointer)} é um hash criptográfico apontando para um bloco de dados, onde o ponteiro de hash é o hash do próprio bloco de dados (Figura \ref{fig:hash_pointer}). Ao contrário das listas vinculadas que apontam para o próximo bloco para que você possa chegar até ele, os ponteiros de hash apontam para o bloco de dados anterior e fornecem uma maneira de verificar se os dados não foram adulterados \cite{beginnig_blockchain_bikramaditya}.
+            
+                \begin{figure}[H]
+                     \centering
+                     \includegraphics[scale=0.8]{figuras/capitulo_2/hash_pointer.png}
+                     \caption{Ponteiro Hash para um bloco de dados - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}}
+                     \label{fig:hash_pointer}
+                \end{figure}
+            
+            O objetivo do ponteiro de hash é construir uma cadeia de blocos que pode ser considerada como uma fonte única de verdade. Seu funcionamento se baseia no fato que o hash do bloco anterior é armazenado no cabeçalho do bloco atual e o hash do bloco atual com o cabeçalho do bloco será armazenado no cabeçalho do próximo bloco. Isso cria uma cadeia de blocos como podemos ver na Figura \ref{fig:blocks_linked_hash_pointers} \cite{beginnig_blockchain_bikramaditya}.
+            
+                \begin{figure}[H]
+                     \centering
+                     \includegraphics[scale=0.8]{figuras/capitulo_2/blocks_linked_hash_pointers.png}
+                     \caption{Blocos encadeados ligados por ponteiros hash - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}}
+                     \label{fig:blocks_linked_hash_pointers}
+                \end{figure}
+
+
+        \subsubsection{Merkle Trees}
+  
+            Uma árvore merkle, também conhecida como uma árvore hash binária, é uma estrutura de dados usada para resumir e verificar eficientemente a integridade de grandes conjuntos de dados. Árvores Merkle são árvores binárias contendo hashes criptográficos. O termo "árvore" é usado na ciência da computação para descrever uma estrutura de dados de ramificação, mas essas árvores geralmente são exibidas de cabeça para baixo com a "raiz" na parte superior e as "folhas" na parte inferior de um diagrama.\cite{mastering_blockchain_andreas}
+            
+            Uma típica árvore Merkle pode ser representada como na figura \ref{fig:merkle_tree_representation}
+        
+                \begin{figure}[H]
+                     \centering
+                     \includegraphics[scale=0.7]{figuras/capitulo_2/merkle_tree_representation.png}
+                     \caption{Representação de uma Árvore de Merkle - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}}
+                     \label{fig:merkle_tree_representation}
+                \end{figure}
+
+            Semelhante à estrutura de dados do ponteiro hash, a árvore Merkle também é à prova de adulteração. A adulteração em qualquer nível da árvore não corresponderia ao hash armazenado em um nível acima na hierarquia e também até o nó raiz. É realmente difícil para um adversário alterar todos os hashes da árvore inteira. Também garante a integridade da ordem das transações. Se você alterar apenas a ordem das transações, também os hashes na árvore até a raiz Merkle serão alterados.\cite{beginnig_blockchain_bikramaditya}
+
+
+\section{Sistemas Distribuídos}
 
     Varias definições de sistemas distribuídos foram dadas nos diversos materiais disponíveis na literatura.Para o propósito deste trabalho, pode-se dizer que: "Um sistema distribuído é uma coleção de elementos computacionais autônomos que para os usuários parecem ser um único sistema coerente. Um elemento computacional, normalmente chamado de nó, pode ser tanto um dispositivo de hardware ou um processo de software.\cite{sistemas_distribuidos_tanembaum}
 
@@ -13,12 +159,11 @@
     ou caso este esteja faltante o sistema deve tolerar estes problemas e continuar seu funcionamento de forma a alcançar o objetivo estabelecido. Estes sistemas 
     são considerados tão desafiadores que o teorema de CAP foi desenvolvido e provado, e o mesmo determina que um sistema distribuído não pode ter todas as propriedades de forma conjunta.
 
-    \subsubsection{Teorema de CAP}
+    \subsection{Teorema de CAP}
 
         Este teorema também é conhecido como \textit{Brewer's Theorem},foi introduzido inicialmente em 1998 por Eric Brewer; e provado como um teorema em 2002 por Seth Gilbert e Nancy Lynch.
 
-        O teorema determina que um sistema distribuído não pode ter Consistência, Disponibilidade e Tolerância a Partição de forma simultânea \cite{brewer_distributed}.A
-        seguir cada um destes é explicado de forma rápida:
+        O teorema determina que um sistema distribuído não pode ter Consistência, Disponibilidade e Tolerância a Partição de forma simultânea \cite{brewer_distributed}.A seguir cada um destes é explicado de forma rápida:
 
         \begin{itemize}
             \item \textbf{Consistência:} é a propriedade que garante que todos os nós em um sistema distribuído possuem pelo menos uma cópia atualizada dos dados;
@@ -26,56 +171,161 @@
         com os dados sem nenhuma falha e sempre quando é requisitado;
             \item \textbf{Tolerância a Partição:} garante que caso um grupo de nós falhe, o sistema distribuído ainda continua a operar corretamente.
         \end{itemize}
-    
-    Na seção XXXXX será explicado mais esse conceito, e como o mesmo influenciou na implementação do blockchain.
 
+    \subsection{O Problema Bizantino}
+    
+        \subsubsection{O Problema dos generais bizantinos}
+        
+           Nos primórdios da computação comercial, por volta de 1980, cientistas da computação começaram a examinar a confiabilidade e os computadores. Foi determinado que um sistema de computador confiável deve ser capaz de lidar com a falha de um ou mais de seus componentes. Um componente com falha pode exibir um tipo de comportamento negligenciado e problemático, ou seja, enviar informações conflitantes para diferentes partes do sistema. O problema de lidar com esse tipo de falha é expresso abstratamente como o Problema dos Generais Bizantinos, do artigo acadêmico de 1982 de Leslie Lamport, Robert Shostak e Marshall Pease (\url{http://www-inst.eecs.berkeley.edu/~cs162/fa12/hand-outs/Original_Byzantine.pdf}) \cite{blockchain_pratical_guide}.
+           
+           O problema dos generais bizantinos é construído em torno do enredo: um general comandante é que toma a decisão de atacar ou recuar, e deve comunicar a decisão a seus tenentes-generais. Um determinado número desses atores são traidores (possivelmente incluindo o genwral). Não se pode confiar nos traidores para comunicar corretamente as ordens; pior ainda, eles podem alterar ativamente as mensagens na tentativa de subverter o processo\cite{blockchain_pratical_guide}.
+    
+            Na analogia, os generais são coletivamente conhecidos como processos, o general que inicia a ordem é o processo de origem e as ordens enviadas aos outros processos são mensagens. Generais traidores e generais-tenentes são processos defeituosos, e generais leais e generais-tenentes são processos corretos. A ordem para recuar ou atacar é uma mensagem com um único bit de informação: um ou um zero. Uma solução para um problema de acordo deve passar por três testes: rescisão, acordo e validade. Conforme aplicado ao problema dos generais bizantinos, estes três testes são \cite{blockchain_pratical_guide}.:
+    
+               \begin{enumerate}
+                    \item Uma solução deve garantir que todos os processos corretos cheguem a uma decisão em relação ao valor da ordem que eles receberam;
+                    \item Todos os processos corretos devem decidir sobre o mesmo valor da ordem que receberam com os dados sem nenhuma falha e sempre quando é requisitado;
+                    \item Se o processo de origem for um processo correto, todos os processos devem decidir sobre o valor que foi original dado pelo processo de origem
+                \end{enumerate}
+    
    
-\subsection[]{Introdução Ao Blockchain}
+\section[]{O Blockchain}
 
     
-    Em 2008 um hacker anônimo (ou um grupo de hackers), utilizando o pseudônimo Satoshi Nakamoto, lançou a primeira moeda totalmente virtual e pouco tempo divulgou um artigo \cite{bitcoin_satoshi}. Esse artigo
-    denominado de \textit{Bitcoin: A Peer-to-Peer Electronic Cash System} detalhava os métodos para o uso de uma rede peer-to-peer para gerar o que era descrito como "um sistema para transações eletrônicas sem abnegar a confiança".
+    Em 2008 um hacker anônimo (ou um grupo de hackers), utilizando o pseudônimo Satoshi Nakamoto, lançou a primeira moeda totalmente virtual e pouco tempo divulgou um artigo \cite{bitcoin_satoshi}. Esse artigo denominado de \textit{Bitcoin: A Peer-to-Peer Electronic Cash System} detalhava os métodos para o uso de uma rede peer-to-peer para gerar o que era descrito como "um sistema para transações eletrônicas sem abnegar a confiança".
     
-    O Bitcoin transformou totalmente os conceitos de bancos,dinheiro, processos de pagamentos entre outros; criando um único registro digital acessível universalmente chamado de Blockchain. Foi atribuído esse nome de corrente porque mudanças só podem ser realizadas adicionando novas informações ao final, como em uma corrente de ferro, e cada nova adição à esta corrente contém um determinado números de transações.
-
-    \subsubsection{Definição}
-
-    Existem diversas definições de Blockchain; essa definição depende do seu ponto de vista em relação a esse assunto. Caso a definição seja olhada de um ponto de vista empresarial isso pode ser definido nesse contexto, caso a definição seja observada sob uma perspectiva técnica poderá ter uma definição um pouco diferente.
+    Nakamoto combinou várias invenções anteriores, como b-money e HashCash para criar um sistema de caixa eletrônico completamente descentralizado que não dependa de uma autoridade central para emissão ou liquidação de moeda e validação de transações. A principal inovação foi usar um sistema de computação distribuída (chamado de algoritmo de “Prova-de-Trabalho”) para conduzir uma “eleição” global a cada 10 minutos, permitindo a rede descentralizada para chegar a um consenso sobre o estado das transações. Isso resolve elegantemente a questão do gasto duplo, em que uma única unidade monetária pode ser gasta duas vezes. Anteriormente, o problema do gasto duplo era uma fraqueza da moeda digital e era resolvido com a compensação de todas as transações por meio de uma central de compensação.\cite{mastering_blockchain_andreas}
     
-    Pode se definir blockchain, em termos gerais, como: "Um registro peer-to-peer distribuído que é criptograficamente seguro, onde somente é possível adicionar novos dados, imutável, e editável somente via consenso ou acordo entre os nós" \cite{mastering_blockchain}.
+    O Bitcoin transformou totalmente os conceitos de bancos, dinheiro, processos de pagamentos entre outros; criando um único registro digital acessível universalmente chamado de Blockchain. Foi atribuído esse nome de corrente porque mudanças só podem ser realizadas adicionando novas informações ao final, como em uma corrente de ferro, e cada nova adição à esta corrente contém um determinado números de transações.
+
+    Bitcoin completed the transformation by creating a single, universally accessible digital ledger, called a blockchain. It’s called a chain because changes can be made only by adding new information to the end. Each new addition, or block, contains a set of new transactions—a couple of thousand in late August—that reference previous transactions in the chain.
+
+
+
+    \subsection{Definição}
+    
+    A abstração para o entendimento de sistemas blockchain é a noção de livro razão, uma invenção desenvolvida pelos renascentistas italianos para suportar escrituração de dupla entrada, um precursor distante das criptomoedas modernas.Um livro contábil é apenas um registro indelével e unificado de transações que ocorrem entre várias partes. Um livro-razão estabelece quais transações aconteceram e a ordem em que essas transações aconteceram.Livros razão são públicos, acessíveis a todas as partes, e devem ser à prova de falsificação: nenhuma das partes pode adicionar, excluir ou modificar as entradas do livro, uma vez gravadas.\cite{blockchain_computing_perspective}
+    
+    Pode se definir blockchain, em termos técnicos, como: "um blockchain é um ledger distribuído de transações implementadas como dados agrupados em blocos que usam validação criptográfica para vincular os blocos. Cada bloco referência e identifica o bloco anterior usando uma função de hashing que forma uma cadeia ininterrupta (isto é, blockchain)" \cite{blockchain_pratical_guide}.
     
     De um ponto de vista empresarial, podemos caracterizar Blockchain como uma plataforma onde diferentes nós podem realizar troca de valores utilizando transações sem a necessidade de uma terceira parte autenticadora.
     
-    \subsubsection{Elementos do Blockchain}
     
-    Nesta seção serão apresentados os elementos genéricos do blockchain, ordenados de forma alfabética. Uma explicação mais precisa desses elementos será apresentada ao decorrer do documento, no contexto em que o mesmo é aplicado dentro do blockchain.
     
-        \begin{itemize}
-            \item \textbf{Bloco(Block):} É composto por múltiplas transações e alguns outros elementos como o hash do bloco anterior, o \textit{timestamp}, e um identificador único; 
-            
-            \item \textbf{Endereço(Addresses):} São identificadores únicos usados em transações no blockchain para referenciar os pagadores e recebedores. Esse endereço normalmente é uma chave pública ou uma derivação da mesma;
-            
-            \item \textbf{Nós(Nodes):} Um nó em uma rede blockchain pode desempenhar diferentes funções dependendo do papel que é atribuído ao mesmo. Um nó pode propor e validar transações e desempenhar a mineração para garantir o consenso e segurança do blockchain.
-            
-            \item \textbf{Contratos Inteligentes(Smart Contracts):} São considerados programas que são executados no "topo" de uma rede Blockchain, onde os mesmos contém as regras de negócio executadas quando determinadas condições são atingidas.
-            
-            \item \textbf{Transação(Transaction):} Representa a transferência de um determinado atributo, como um valor, de um endereço para outro;
-            
-            
-            
-        \end{itemize}
+    \subsection{Tipos de Blockchain}
 
-    \subsubsection{Tipos de Blockchain}
+    Quando as pessoas começaram a entender como o blockchain funciona, começaram a usá-lo para outros fins: como armazenamento de dados para coisas de valor, identidades, acordos, direitos de propriedade e uma série de outras coisas \cite{blockchain_pratical_guide}. Cada uma dessas possíveis aplicações acaba demandando diferentes características e restrições para seu funcionamento, fazendo com que surgissem diferentes tipos e categorias de blockchain.
+    
+    Os tópicos a seguir trarão uma pequena descrição sobre alguns dos diferentes tipos de blockchain.
+    
+    
+    \subsubsection{Public Blockchains}
+    
+    Um blockchain público é aquele que os criadores iniciais imaginaram como: um blockchain para todos poderem acessar e realizar transações; um blockchain onde as transações são incluídas se e somente se forem válidas; um blockchain onde todos podem contribuir para o processo de consenso. \cite{blockchain_pratical_guide}.
+    
+    No blockchain público, em vez de usar um servidor central, o blockchain é assegurado por verificação criptográfica por incentivos para os chamados \textit{miners}. Qualquer um pode ser um minerador para agregar e publicar essas transações. No blockchain público, como nenhum usuário é implicitamente confiável para verificar transações, todos os usuários seguem um algoritmo que verifica transações comprometendo recursos de software e hardware para resolver um problema por força bruta (ou seja, resolvendo o quebra-cabeça criptográfico) \cite{blockchain_pratical_guide}.
+    
 
-    \subsubsection{Transações}
+    \subsubsection{Permissioned ledger}
+    
+    É um tipo de blockchain no qual os participantes da rede(nós) são conhecidos e já são confiáveis. Os registros autorizados não precisam usar um mecanismo de consenso distribuído. Em vez disso, um protocolo de acordo pode ser usado para manter uma versão compartilhada da verdade em relação ao estado dos registros no blockchain. Também não há exigência de que um \textit{permissioned ledger} seja privado, pois pode ser um blockchain público, mas com controle de acesso regulado.\cite{mastering_blockchain}
 
-    \subsubsection{Bloco}
+    \subsubsection{Private Blockchain}
+
+    Um blockchain totalmente privado é um blockchain no qual as permissões de gravação são mantidas centralizadas em uma organização. Permissões de leitura podem ser públicas ou restritas a uma extensão arbitrária. Aplicações prováveis incluem gerenciamento de banco de dados e auditoria interna para uma única empresa, de modo que a legibilidade pública pode não ser necessária em muitos casos, embora em outros casos a audibilidade pública seja desejada.\cite{blockchain_pratical_guide}
+
+
+
+    \subsection{Estrutura de um bloco}
+
+        Um bloco é uma estrutura de dados que agrega transações para inclusão no livro razão público, o blockchain. O bloco é feito de um cabeçalho, contendo metadados, seguido por uma longa lista de transações que compõem a maior parte do seu tamanho. O cabeçalho do bloco é de 80 bytes, enquanto o tamanho médio das transações é de pelo menos 250 bytes e um bloco médio contém mais de 500 transações. Um bloco completo, com todas as transações, é, portanto cerca de 1.000 vezes maior que o cabeçalho do bloco.\cite{mastering_blockchain_andreas}
 
         Um bloco é composto de uma seleção de transações organizadas de forma ordenada para que ocorra uma organização lógica. Esse bloco é composto por transações, e também contém uma referência ao bloco anterior. A estrutura do bloco varia de acordo com o tipo e design do blockchain.\cite{mastering_blockchain}
         
-        \subsubsection{A estrutura do bloco}
-                % Estrutura do cabeçalho de um bloco
-        \subsubsection{The genesis block}
+        A tabela \ref{tabela_estrutura_de_um_bloco} apresenta a estrutura de um bloco de forma geral.
+        
+  
+        \begin{table}[H]
+            \begin{tabular}{|c|l|l|ll}
+            \cline{1-3}
+            \cellcolor[HTML]{9AFF99}\textbf{Tamanho} & \multicolumn{1}{c|}{\cellcolor[HTML]{9AFF99}\textbf{Campo}} & \multicolumn{1}{c|}{\cellcolor[HTML]{9AFF99}\textbf{Descrição}} &  &  \\ \cline{1-3}
+            4 bytes                                  & Tamanho do Bloco                                            & O tamanho do bloco, em bytes, após esse campo                   &  &  \\ \cline{1-3}
+            80 bytes                                 & Cabeçalho do Bloco                                          & Os campos do cabeçalho do bloco                                 &  &  \\ \cline{1-3}
+            1-9 bytes                                & Contador da transação                                       & Quantas transações seguem                                       &  &  \\ \cline{1-3}
+            Variável                                 & Lista de Transações / Dados                                 & As transações/dados gravados nesse bloco                              &  &  \\ \cline{1-3}
+            \end{tabular}
+        \caption{A estrutura de um bloco}
+        \label{tabela_estrutura_de_um_bloco}
+        \end{table}
+            
+    \subsection{Cabeçalho de um bloco}
+
+    O cabeçalho do bloco consiste em três conjuntos de metadados do bloco. Primeiro, há uma referência a um hash do bloco anterior, o que conecta esse bloco ao bloco anterior no blockchain. O segundo conjunto de metadados é composto pelos campos: a dificuldade, o registro de data e hora e o identificador único(contador), onde estes estão relacionadas à concorrência na mineração. A terceira parte dos metadados é a raiz da árvore de merkle, uma estrutura de dados usada para resumir eficientemente todas as transações no bloco.\cite{mastering_blockchain_andreas}
+
+    A tabela \ref{tabela_estrutura_cabecalho_de_um_bloco} apresenta a estrutura de um cabeçalho de um bloco de forma geral.
+    
+    \begin{table}[H]  
+        \begin{tabular}{|c|l|l|ll}
+        \cline{1-3}
+        \cellcolor[HTML]{9AFF99}\textbf{Tamanho} & \multicolumn{1}{c|}{\cellcolor[HTML]{9AFF99}\textbf{Campo}} & \multicolumn{1}{c|}{\cellcolor[HTML]{9AFF99}\textbf{Descrição}} &  &  \\ \cline{1-3}
+        4 bytes                                  & Versão                                                      & A versão numérica para controle de atualizações                 &  &  \\ \cline{1-3}
+        32 bytes                                 & Hash do bloco anterior                                      & Uma referência ao hash do bloco anterior (pai) na cadeia        &  &  \\ \cline{1-3}
+        32 bytes                                 & Raiz da Árvore de Merkle                                    & Um hash da raiz da árvore de merkle das transações deste bloco  &  &  \\ \cline{1-3}
+        4 bytes                                  & Timestamp                                                   & O tempo aproximado de criação deste bloco                       &  &  \\ \cline{1-3}
+        4 bytes                                  & Dificuldade                                                 & A dificuldade do algoritmo de prova de trabalho para este bloco &  &  \\ \cline{1-3}
+        4 bytes                                  & Identificador Único                                         & Um contador usado para o algoritmo de prova de trabalho         &  &  \\ \cline{1-3}
+        \end{tabular}
+        \caption{A estrutura de um cabeçalho de um bloco}
+        \label{tabela_estrutura_cabecalho_de_um_bloco}
+    \end{table}
+
+
+
+    \subsection{Block Header Hash e Block Height, identificadores de um bloco}
+    
+    O identificador primário de um bloco é seu hash criptográfico, uma impressão digital, feita pelo aplicação do hash do cabeçalho do bloco duas vezes através do algoritmo SHA256. O hash de 32 bytes resultante é chamado de hash de bloco, mas é mais precisamente o hash de cabeçalho de bloco, porque somente o cabeçalho de bloco é usado para calculá-lo. O hash de bloco identifica um bloco de forma única e inequívoca e pode ser derivado independentemente por qualquer nó simplesmente fazendo hash no cabeçalho do bloco.\cite{mastering_blockchain_andreas}
+    
+    Uma segunda maneira de identificar um bloco é por sua posição no blockchain, chamado altura do bloco, onde o primeiro bloco criado está na altura 0. Cada bloco subsequente adicionado “no topo” daquele primeiro bloco é uma posição "superior" no blockchain, como caixas empilhadas uma sobre a outra.\cite{mastering_blockchain_andreas}
+
+    Ao contrário do hash do bloco, a altura do bloco não é um identificador exclusivo. Embora um único bloco tenha sempre uma altura de bloco específica e invariante, o inverso não é verdadeiro, a altura do bloco nem sempre identifica um único bloco. Dois ou mais blocos podem ter a mesma altura de bloco, competindo pela mesma posição no blockchain.
+    
+    
+    
+    \subsection{Consenso no blockchain}
+
+        O consenso é um processo de concordância entre nós que não possuem confiança mútua em um estado final de dados. Para alcançar consenso, diferentes algoritmos podem ser usados. É fácil chegar a um acordo entre dois nós (por exemplo, em sistemas cliente-servidor), mas quando vários nós participam de um sistema distribuído e precisam concordar em um único valor, torna-se muito difícil chegar a um consenso. Esse conceito de alcançar consenso entre vários nós é conhecido como consenso distribuído \cite{mastering_blockchain}.
+        
+        Um mecanismo de consenso é um conjunto de etapas tomadas por todos, ou a maioria dos nós, para chegar a um acordo sobre um estado ou valor proposto. Por mais de três décadas este conceito tem sido pesquisado por cientistas da computação na indústria e na academia. Mecanismos de consenso recentemente entraram no centro das atenções e ganharam muita popularidade com o advento do bitcoin e blockchain \cite{mastering_blockchain}.
+        
+        Cada blockchain tem seus próprios algoritmos para criar um acordo dentro de sua rede nas entradas adicionadas. Existem muitos modelos diferentes para criar consenso porque cada blockchain está criando diferentes tipos de entradas. Alguns blockchains são de valor comercial, outras armazenam dados e outras estão protegendo sistemas e contratos.\cite{blockchain_for_dummies}
+        
+        
+                \begin{figure}[H]
+                     \centering
+                     \includegraphics[scale=0.7]{figuras/capitulo_2/blockchain_come_to_agreement.png}
+                     \caption{Funcionamento do Blockchain - Imagem retirada de \cite{blockchain_for_dummies}}
+                     \label{fig:blockchain_work_dummies}
+                \end{figure}
+        
+        Os mecanismos de consenso vêm da teoria dos jogos. Os sistemas devem ser projetados de tal forma que os nós obtenham o maior benefício se eles seguirem as regras. Um dos aspectos para garantir que os nós se comportem honestamente é recompensar o comportamento honesto e punir por atividades fraudulentas. No entanto em um blockchain público como o Bitcoin, um nó pode ter muitas identidades públicas diferentes e elas são bastante anônimas. Fica muito difícil punir essas identidades porque elas têm a opção de evitar essa punição criando novas identidades para si mesmas. Por outro lado, recompensá-los funciona muito bem, porque mesmo que alguém tenha múltiplas identidades, eles podem colher os frutos que lhes são dados \cite{beginnig_blockchain_bikramaditya}.
+        
+        O objetivo do consenso é também garantir que a rede seja robusta o suficiente para sustentar vários tipos de ataques. Independentemente dos tipos de algoritmos de consenso que um pode escolher, dependendo do caso de uso, ele deve cair no molde de um consenso tolerante a falhas bizantinas para ser aceito \cite{beginnig_blockchain_bikramaditya}.
+        
+        
+        \subsubsection{Protocolos de consenso}
+
+            A escolha do protocolo de consenso afeta a segurança e a escalabilidade. Uma vez que um novo bloco é gerado por um \textit{miner}, o \textit{miner} propaga o bloco para seus pares conectados na rede blockchain. No entanto, os \textit{miners} podem encontrar novos blocos competidores diferentes e resolver isso usando os mecanismos de consenso do blockchain.\cite{architecture_for_blockchain}
+            
+            VER NO LIVRO ARQUITEUTURA DE XIWEI, PAG 51 DO PDF
+            
+            Nakamoto consensus
+            
+            PBFT \cite{beginnig_blockchain_bikramaditya} 
+            
+            Proof of work
+            
+            Proof of stake
+    
     
     \subsubsection{Descentralização}
 
@@ -90,17 +340,6 @@
         \subsubsection{Aplicações descentralizadas}
 
         \subsubsection{Plataformas para descentralização}
+        
 
-\subsection{Teoria criptográfica}
-
-    \subsubsection{Pilares}
-
-    \subsubsection{Criptografia Simétrica}
-
-    \subsubsection{Criptografia Assimetrica}
-    
-    \subsubsection{Funções de Hash}
-
-    \subsubsection{Chaves Públicas e Privadas}
-
-        \subsubsection{RSA}
+        \cite{bitcoin_and_blockchainsecurity}
