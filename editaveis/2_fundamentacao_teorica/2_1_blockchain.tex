@@ -1,10 +1,10 @@
 
 \section{Conceitos de segurança}
 
-    O NIST Computer Security Handbook[NIST95] \ref{nist95}, define segurança computacional como:
+    O NIST Computer Security Handbook[NIST95] \cite{nist95}, define segurança computacional como:
     
      \begin{quote}
-        "A proteção oferecida a um sistema de informações automatizado para atingir os objetivos aplicáveis de preservar a integridade, a disponibilidade e a confidencialidade dos recursos do sistema de informações (incluindo hardware, software, firmware, informações / dados e telecomunicações)."
+        ``A proteção oferecida a um sistema de informações automatizado para atingir os objetivos aplicáveis de preservar a integridade, a disponibilidade e a confidencialidade dos recursos do sistema de informações (incluindo hardware, software, firmware, informações / dados e telecomunicações).''
      \end{quote}
      
      Stallings fala em seu livro \cite{cryptograpy_and_network_stallings} que está definição introduz os três objetivos chaves da segurança computacional, que estão descritos a seguir:
@@ -34,7 +34,7 @@
             \begin{figure}[H]
                  \centering
                  \includegraphics[scale=0.6]{figuras/capitulo_2/criptografia_simetrica.png}
-                 \caption{Criptografia Simétrica - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}}
+                 \caption{Criptografia Simétrica - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}.}
                  \label{fig:imagem_criptografia_simetrica}
             \end{figure}
             
@@ -48,16 +48,16 @@
                 \begin{figure}[H]
                      \centering
                      \includegraphics[scale=0.7]{figuras/capitulo_2/stream_cipher_generator.png}
-                     \caption{Stream cipher - Imagem retirada de \cite{cryptograpy_and_network_stallings}}
+                     \caption{Cifrador de fluxo usando algoritmo gerador de fluxo de bits - Imagem retirada de \cite{cryptograpy_and_network_stallings}.}
                      \label{fig:imagem_stream_cipher}
                 \end{figure}
         
-            Uma \textbf{cifra de bloco(block cipher)} é aquela em que um bloco de texto simples é tratado como um todo e usado para produzir um bloco de texto cifrado de comprimento igual. Normalmente, um tamanho de bloco de 64 ou 128 bits é usado. Como com uma cifra de fluxo, os dois usuários compartilham uma chave de criptografia simétrica (Figura \ref{fig:imagem_block_cipher})
+            Uma \textbf{cifra de bloco(block cipher)} é aquela em que um bloco de texto simples é tratado como um todo e usado para produzir um bloco de texto cifrado de comprimento igual. Normalmente, um tamanho de bloco de 64 ou 128 bits é usado. Como ocorrer com uma cifra de fluxo, os dois usuários compartilham uma chave de criptografia simétrica (Figura \ref{fig:imagem_block_cipher})
 
                 \begin{figure}[H]
                      \centering
                      \includegraphics[scale=0.7]{figuras/capitulo_2/block_cipher.png}
-                     \caption{Block cipher - Imagem retirada de \cite{cryptograpy_and_network_stallings}}
+                     \caption{Cifrador de Bloco- Imagem retirada de \cite{cryptograpy_and_network_stallings}.}
                      \label{fig:imagem_block_cipher}
                 \end{figure}
             
@@ -76,7 +76,7 @@
                     \begin{figure}[H]
                          \centering
                          \includegraphics[scale=0.6]{figuras/capitulo_2/public_private_encryption.png}
-                         \caption{Criptografia Assimétrica para Confidencialidade - Imagem retirada de \cite{mastering_blockchain}}
+                         \caption{Criptografia e descriptografia usando chave público/privada - Imagem retirada de \cite{mastering_blockchain}.}
                          \label{fig:public_private_encryption}
                     \end{figure}
                     
@@ -86,7 +86,7 @@
                     \begin{figure}[H]
                          \centering
                          \includegraphics[scale=0.7]{figuras/capitulo_2/public_private_signature.png}
-                         \caption{Criptografia Assimétrica para Assinatura - Imagem retirada de \cite{mastering_blockchain}}
+                         \caption{Modelo de esquema assinatura por criptografia de chave pública - Imagem retirada de \cite{mastering_blockchain}.}
                          \label{fig:public_private_signature}
                     \end{figure}
                     
@@ -103,7 +103,7 @@
                 \begin{figure}[H]
                      \centering
                      \includegraphics[scale=0.5]{figuras/capitulo_2/hash_function.png}
-                     \caption{Função Hash - Imagem retirada de \cite{cryptograpy_and_network_stallings}}
+                     \caption{Diagrama de função de hash criptográfica; h = H(M) - Imagem retirada de \cite{cryptograpy_and_network_stallings}.}
                      \label{fig:hash_function}
                 \end{figure}
                 
@@ -189,7 +189,7 @@
                 \end{enumerate}
     
    
-\section[]{O Blockchain}
+\section{O Blockchain}
 
     
     Em 2008 um hacker anônimo (ou um grupo de hackers), utilizando o pseudônimo Satoshi Nakamoto, lançou a primeira moeda totalmente virtual e pouco tempo divulgou um artigo \cite{bitcoin_satoshi}. Esse artigo denominado de \textit{Bitcoin: A Peer-to-Peer Electronic Cash System} detalhava os métodos para o uso de uma rede peer-to-peer para gerar o que era descrito como "um sistema para transações eletrônicas sem abnegar a confiança".
@@ -197,8 +197,6 @@
     Nakamoto combinou várias invenções anteriores, como b-money e HashCash para criar um sistema de caixa eletrônico completamente descentralizado que não dependa de uma autoridade central para emissão ou liquidação de moeda e validação de transações. A principal inovação foi usar um sistema de computação distribuída (chamado de algoritmo de “Prova-de-Trabalho”) para conduzir uma “eleição” global a cada 10 minutos, permitindo a rede descentralizada para chegar a um consenso sobre o estado das transações. Isso resolve elegantemente a questão do gasto duplo, em que uma única unidade monetária pode ser gasta duas vezes. Anteriormente, o problema do gasto duplo era uma fraqueza da moeda digital e era resolvido com a compensação de todas as transações por meio de uma central de compensação.\cite{mastering_blockchain_andreas}
     
     O Bitcoin transformou totalmente os conceitos de bancos, dinheiro, processos de pagamentos entre outros; criando um único registro digital acessível universalmente chamado de Blockchain. Foi atribuído esse nome de corrente porque mudanças só podem ser realizadas adicionando novas informações ao final, como em uma corrente de ferro, e cada nova adição à esta corrente contém um determinado números de transações.
-
-    Bitcoin completed the transformation by creating a single, universally accessible digital ledger, called a blockchain. It’s called a chain because changes can be made only by adding new information to the end. Each new addition, or block, contains a set of new transactions—a couple of thousand in late August—that reference previous transactions in the chain.
 
 
 
@@ -303,7 +301,7 @@
                 \begin{figure}[H]
                      \centering
                      \includegraphics[scale=0.7]{figuras/capitulo_2/blockchain_come_to_agreement.png}
-                     \caption{Funcionamento do Blockchain - Imagem retirada de \cite{blockchain_for_dummies}}
+                     \caption{Funcionamento do Blockchain - Imagem retirada de \cite{blockchain_for_dummies}.}
                      \label{fig:blockchain_work_dummies}
                 \end{figure}
         
@@ -316,30 +314,18 @@
 
             A escolha do protocolo de consenso afeta a segurança e a escalabilidade. Uma vez que um novo bloco é gerado por um \textit{miner}, o \textit{miner} propaga o bloco para seus pares conectados na rede blockchain. No entanto, os \textit{miners} podem encontrar novos blocos competidores diferentes e resolver isso usando os mecanismos de consenso do blockchain.\cite{architecture_for_blockchain}
             
-            VER NO LIVRO ARQUITEUTURA DE XIWEI, PAG 51 DO PDF
+            A abordagem geral típica é chamada de consenso Nakamoto. Essa abordagem depende dos participantes que selecionam como autoritativa a maior cadeia de blocos que observaram em cada ponto no tempo. No Bitcoin, novos blocos são gerados através de um mecanismo de prova de trabalho (\textit{Proof Of Work}). A prova de trabalho usa um quebra-cabeça criptográfico que é fácil de verificar, mas é difícil de resolver e toma um tempo efetivamente aleatório. Os mineradores de Bitcoin competem para resolver esse quebra-cabeça para cada bloco, usando grandes quantidades de energia de computador (e, portanto, de eletricidade) para aumentar suas chances de vencer a competição pelo bloco. O investimento requerido pelas mineradoras para isso serve para alinhar seus incentivos com o bom funcionamento do sistema como um todo. Existem vários mecanismos de prova de trabalho, como o Ethash 11 usado pelo Ethereum e o Hashcash 12 usado pelo Bitcoin.\cite{architecture_for_blockchain}
             
-            Nakamoto consensus
+            A prova de participação (\textit{Proof of stake}) é um mecanismo alternativo para o consenso Nakamoto, que seleciona o próximo nó de mineração com base no controle da moeda digital nativa da rede blockchain. Por exemplo, os mineradores em Peercoin 14 precisam provar a propriedade de uma certa quantia de moeda de Peercoin para os blocos de mineração. Assim, a prova de participação naturalmente alinha os incentivos dos detentores de moeda digital no blockchain com o bom funcionamento do blockchain. Existem vários protocolos de prova de participação, por ex. Tendermint 15 usado em Eris e Casper 16 para Ethereum. Comparado com a prova de trabalho, a prova de participação é mais eficiente em termos de custo, porque muito menos poder computacional é usado na mineração e a latência também é menor.\cite{architecture_for_blockchain}
             
-            PBFT \cite{beginnig_blockchain_bikramaditya} 
-            
-            Proof of work
-            
-            Proof of stake
+            PBFT é o acrônimo para o algoritmo de Tolerância de Falha Bizantina Prática e é um dos muitos algoritmos de consenso que se pode considerar para uso em um blockchain, é um algoritmo que não é usado para gerar recompensas de mineração.O funcionamento interno do PBFT, em um alto nível, é transmitido para todos os nós participantes que possuem suas próprias réplicas ou estados internos. Quando os nós recebem uma solicitação, eles executam o cálculo com base em seus estados internos. O resultado da computação é então compartilhado com todos os outros nós no sistema. Então, todo nó está ciente do que outros nós estão computando. Considerando seus próprios resultados de computação, juntamente com os recebidos de outros nós, eles tomam uma decisão e se comprometem com um valor final, que é novamente compartilhado entre os nós. Neste momento, cada nó está ciente da decisão final de todos os outros nós. Em seguida, todos respondem com suas decisões finais e, com base na maioria, o consenso final é alcançado.O PBFT pode ser eficiente em comparação com outros algoritmos de consenso, com base no esforço necessário. No entanto, o anonimato no sistema pode ser comprometido devido à maneira como esse algoritmo é projetado. \cite{beginnig_blockchain_bikramaditya}
+
     
-    
-    \subsubsection{Descentralização}
+    \subsection{Smart Contracts}
+        
+        Um cientista de computação e especialista em criptografia chamado Nick Szabo é creditado por desenvolver o conceito de um contrato inteligente. Ele definiu um contrato inteligente como ``um conjunto de promessas, especificadas em formato digital, incluindo protocolos nos quais as partes cumprem essas promessas''. \cite{smart_contracts_szabo}
 
-        \subsubsection{Descentralização no Blockchain}
-
-        \subsubsection{Ecossistema da descentralização}
-
-        \subsubsection{Smart Contract}
-
-        \subsubsection{Organização descentralizada}
-
-        \subsubsection{Aplicações descentralizadas}
-
-        \subsubsection{Plataformas para descentralização}
+        Assim, um contrato inteligente é um algoritmo computadorizado, que executa os termos do contrato. No entanto, essa definição não diferencia contratos inteligentes de algumas construções contratuais já bem conhecidas que implementam o desempenho automatizado, como máquinas de venda automática. Máquinas de venda automática são definidas como máquinas automáticas independentes que distribuem bens ou prestam serviços quando as moedas são inseridas ou o pagamento por, digamos, um cartão de crédito é feito. Máquinas de venda automática são programadas com certas regras e executadas por essas regras. Se não houver uma diferença principal entre as máquinas de venda automática e os contratos inteligentes, os contratos inteligentes são tão antigos quanto a própria lei romana. No primeiro século EC, um engenheiro e matemático grego, Herói de Alexandria, documentou a primeira máquina de venda automática na revista Pneumatika. Sua máquina aceitou uma moeda de dracma e depois distribuiu água benta. Portanto, os contratos inteligentes, por si só, não são novos.\cite{blockchain_pratical_guide}
         
 
         \cite{bitcoin_and_blockchainsecurity}
