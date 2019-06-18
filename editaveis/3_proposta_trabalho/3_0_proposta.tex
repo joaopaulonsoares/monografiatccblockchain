@@ -1,21 +1,30 @@
 \chapter[Proposta de Trabalho]{Proposta de Trabalho}
 
 
-A proposta de trabalho consiste no desenvolvimento de uma aplicação descentralizada(dApp) para o registro de infrações de trânsito utilizando-se da tecnologia \textit{blockchain} para garantir a integridade das informações registradas. 
+A proposta de trabalho consiste no desenvolvimento de uma aplicação descentralizada(dApp), por meio do ethereum, para o registro de infrações de trânsito utilizando-se da tecnologia \textit{blockchain} para garantir a integridade das informações registradas. 
 
-Será implementado um blockchain do tipo público, onde todos podem contribuir para o processo de consenso e validação dos blocos adicionados, possibilitando que qualquer pessoa interessada possa contribuir para a rede de registros. Para mais informações em relação a este tipo de blockchain, veja a seção \ref{subsection_tipos_blockchain}
+Será implementado um blockchain do tipo público, onde todos podem contribuir para o processo de consenso e validação dos blocos adicionados, possibilitando que qualquer pessoa interessada possa contribuir para a rede de registros. Para mais informações em relação a este tipo de blockchain, vide seção \ref{subsection_tipos_blockchain}
 
 Para auxiliar nos testes e uso da aplicação descentralizada durante o desenvolvimento, também serão utilizadas duas outras ferramentas: Ganache - Truffle Framework e o Metamask. O Ganache permite ativar e gerenciar rapidamente um blockchain pessoal Ethereum para executar testes, executar comandos e inspecionar o estado do mesmo enquanto controla como a cadeia de blocos opera. O Metamask é um plug-in adicionado ao navegador, que serve como uma ponte para conectar-se à rede e injetar a instância web3 em no código. O Metamask também permite selecionar redes diferentes (como uma local para testes) e contas Ethereum.
 Mais informações sobre a execução e instalação dessas ferramentas estão disponíveis nos apêndices X e Y.
 
+Para a realização do trabalho, algumas premissas serão tomadas como base para seu desenvolvimento. As premissas são:
+
+    \begin{enumerate}
+        \item O sistema funcionará como o RENAINF(vide seção \ref{section_renainf}), onde funcionará como o sistema único para registro de infrações em todo o território nacional. Onde todas infrações serão registradas nesta plataforma, mesmo caso o infrator tenha o carro licenciado na unidade federativa onde ocorreu a violação da norma;
+        \item Cada órgão ou entidade do sistema nacional de trânsito terá sua representação no sistema por meio de uma conta de administrador;
+        \item Serão utilizados bancos de dados auxiliares para simular as bases de dados de condutores habilitados e veículos registrados, de forma que essas informações possam ser obtidas para o registro da infração;
+        \item Cada condutor habilitado terá seu próprio conjunto de chaves público/privada, onde a chave pública será salva junto ao registro do condutor no banco de dados auxiliar responsável por esta informação.
+    \end{enumerate}
+
 
 \section{Aplicação}
 
-O dApp(aplicação descentralizada) será criado para tornar o registro infrações de trânsito transparentes e descentralizados. Angular será usado para implementar o \textit{front-end} e os contratos inteligentes solidity da plataforma ethereum serão usados no \textit{back-end}. 
+O dApp(aplicação descentralizada) será criada/ para tornar o registro infrações de trânsito transparentes e descentralizados. Angular será usado para implementar o \textit{front-end} e os contratos inteligentes solidity da plataforma ethereum serão usados no \textit{back-end}. 
 
 Angular é uma estrutura JavaScript usada para criar aplicativos de página única. A principal característica é que podemos criar nossos aplicativos de maneira modular, o que ajuda a reduzir a repetição de códigos e facilita a depuração. Ele também permite modificar os elementos HTML dinamicamente, facilitando a criação de páginas interativas em tempo real. 
 
-Os contratos inteligentes escritos em solidity para a rede ethereum no back-end da aplicação torna o dApp descentralizado e transparente. 
+Os contratos inteligentes escritos em \verb|solidity| para a rede ethereum no back-end da aplicação torna o dApp descentralizado e transparente. 
 
 \subsection{Arquitetura Proposta}
 
@@ -34,25 +43,31 @@ Exemplo da comunicação:
 
 \subsection{Funcionalidades}
 
-O DApp contemplará as seguintes funcionalidades:
+De forma a contemplar o máximo de situações presentes no RENAINF respeitando a regulação presente no CTB,o sistema conterá as seguintes funcionalidades:
 
 
     \subsubsection{Registro de Infração}
     
-        Aqui, a autoridade governamental registrada como administrador registra as informações relacionadas ao registro de infração. O administrador verifica os detalhes com os registros existentes e entra no dApp. As informações que serão cadastrados no dApp para o registro da infração são:
+        No registro de uma infração, os órgãos ou entidades registrados como administradores vão inserir no sistema as informações relacionadas ao registro de infração. Nesta plataforma inicialmente não serão registrados todos os campos elencados no CTB(Seção \ref{estrutura_auto_infracao}),as informações que serão cadastrados no sistema para o registro da infração de forma a contemplar as informações nesses campos são:
         
-        \begin{itemize}
-            \item Placa do veículo
-            \item Categoria da Infração
-            \item Data/Hora da Infração
-            \item Pontos da Infração
-            \item Observações
-            \item Administrador responsável pela aplicação
-            \item Preço para pagamento da infração (valor em ethers)
-            \item Data limite para pagamento
-        \end{itemize}
+        \begin{quote}
+        
+            \begin{itemize}
+                \item Placa do veículo
+                \item Categoria da Infração
+                \item Data/Hora da Infração
+                \item Pontos da Infração
+                \item Observações
+                \item Administrador responsável pela aplicação
+                \item Preço para pagamento da infração (valor em ethers)
+                \item Data limite para pagamento
+            \end{itemize}
+            
+        \end{quote}
+        
+
     
-        Junto com essas informações, um ID gerado a partir dos quatro primeiros campos também é inserido. Este ID será gerado em uma função usando SHA256. Os valores inseridos no formulário serão passados para a função de registro e os detalhes são mapeados usando o ID gerado acima. Mais tarde, esse mapeamento permite a busca de um registro ser realizada mais facilmente.
+        Junto com essas informações, um ID gerado a partir dos quatro primeiros campos também é inserido. Este ID será gerado em uma função usando SHA256, ou seja o ID será um hash desses campos. Os valores inseridos no formulário serão passados para a função de registro e os detalhes são mapeados usando o ID gerado acima. Esse mapeamento com o ID permitirá posteriormente a busca do  registro ser realizada mais facilmente no blockchain.
         
         Após confirmar as informações preenchidas, a transação será inserida no blockchain e validada por outros nós. Após este processo a infração estará disponível para que sejam realizadas as outras funções como consulta, realização de recursos e pagamento da mesma.
         
@@ -91,4 +106,4 @@ Para minerar moedas ethereum é necessário ter um computador com alta capacidad
 
 Ao encontrar a sequência compatível, o minerador recebe uma recompensa para cada bloco que ele minerar. Essa recompensa foi criada com a intenção de pagar as pessoas que emprestam poder computacional para manter a rede funcionando.
 
-De forma a incentivar a inserção do maior número de nós possíveis na rede, tornando a confiabilidade da rede ainda maior, o pagamento das infrações registradas no blockchain poderão ser feitas utilizando essas moedas obtidas por meio da mineração. Este incentivo beneficiará principalmente pessoas jurídicas que possuem uma grande frota automotora e serviços computacionais a disposição, como empresas locadoras de veículos e empresas de transporte urbano, pois eles poderão pagar as infrações realizadas por sua frota com um certo desconto e ainda beneficiarão a rede como um todo.
+De forma a incentivar a inserção do maior número de nós possíveis na rede, tornando a confiabilidade da rede ainda maior, o pagamento das infrações registradas no blockchain poderão ser feitas utilizando essa recompensa monetária obtida por meio da mineração. Este incentivo beneficiará principalmente pessoas jurídicas que possuem uma grande frota automotora e serviços computacionais a disposição, como empresas locadoras de veículos e empresas de transporte urbano, pois estes poderão pagar as infrações realizadas por sua frota com um certo desconto e ainda beneficiarão a rede como um todo.
