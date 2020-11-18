@@ -7,7 +7,7 @@
         ``A proteção oferecida a um sistema de informações automatizado para atingir os objetivos aplicáveis de preservar a integridade, a disponibilidade e a confidencialidade dos recursos do sistema de informações (incluindo \textit{hardware}, \textit{software}, \textit{firmware}, informações / dados e telecomunicações).''
      \end{quote}
      
-     Stallings fala em seu livro \cite{cryptograpy_and_network_stallings} que esta definição introduz os três objetivos chaves da segurança computacional, que estão descritos a seguir:
+     Stallings escreve em seu livro \cite{cryptograpy_and_network_stallings} que esta definição introduz os três objetivos chaves da segurança computacional, que estão descritos a seguir:
         
         \begin{itemize}
             \item \textbf{Confidencialidade:} assegura que uma informação privada ou confidencial não estará disponível para indivíduos não autorizados, e que o indivíduo tem controle sob suas informações;
@@ -17,7 +17,7 @@
 
     \subsection{Criptografia}
     
-    A criptografia é o componente mais importante do \textit{blokchain}.A criptografia é certamente um campo de pesquisa em si mesmo, e é baseada em técnicas matemáticas. Houveram muitas falhas relatadas em carteiras e trocas de informações devido ao \textit{design} mais fraco ou implementações criptográficas frágeis \cite{beginnig_blockchain_bikramaditya}.
+    A criptografia é o componente mais importante do \textit{blockchain}.A criptografia é certamente um campo de pesquisa em si mesmo, e é baseada em técnicas matemáticas. Houve muitas falhas relatadas em carteiras e trocas de informações devido ao \textit{design} mais fraco ou implementações criptográficas frágeis \cite{beginnig_blockchain_bikramaditya}.
     
     Qualquer informação na forma de uma mensagem de texto, dados numéricos ou um programa de computador pode ser chamada de texto claro. A ideia é cifrar o texto claro usando um algoritmo de cifração/decifração e uma chave que produza o texto cifrado, este último se tornando uma versão protegida do texto claro em relação a confidencialidade. O texto cifrado pode então ser transmitido ao destinatário pretendido, que o decifra usando o algoritmo de decifração e a chave para obter o texto simples.\cite{beginnig_blockchain_bikramaditya}
     
@@ -31,7 +31,7 @@
             
             A Figura \ref{fig:imagem_criptografia_simetrica} representa como é o funcionamento da criptografia simétrica. Na figura, existe a diferenciação de dois canais de comunicação, onde o canal considerado inseguro é utilizado para transmitir o texto que foi cifrado sem prejuízos a sua segurança; e um canal considero seguro para transmitir a chave utilizada para cifrar o texto e que também será utilizada para decifrar o mesmo e recuperar o texto em claro.
             
-            \begin{figure}[H]
+            \begin{figure}[h]
                  \centering
                  \includegraphics[scale=0.6]{figuras/capitulo_2/criptografia_simetrica.png}
                  \caption{Criptografia Simétrica - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}.}
@@ -45,7 +45,7 @@
             Consequentemente, por razões práticas, o gerador de fluxo de bits deve ser implementado como um procedimento algorítmico, de modo que o fluxo de bits criptográfico possa ser produzido por ambos os usuários. Nesta abordagem (Figura \ref{fig:imagem_stream_cipher}), o gerador de fluxo de bits é um algoritmo controlado por chave e deve produzir um fluxo de bits criptograficamente fortes. Agora, os dois usuários precisam compartilhar apenas a chave geradora, e cada um pode produzir o fluxo de chaves \cite{cryptograpy_and_network_stallings}.
         
             
-                \begin{figure}[H]
+                \begin{figure}[h]
                      \centering
                      \includegraphics[scale=0.7]{figuras/capitulo_2/stream_cipher_generator.png}
                      \caption{Cifrador de fluxo usando algoritmo gerador de fluxo de bits - Imagem retirada de \cite{cryptograpy_and_network_stallings}.}
@@ -54,7 +54,7 @@
         
             Um \textit{block cipher} ou \textbf{cifra de bloco} é aquela em que um bloco de texto simples é tratado como um todo e usado para produzir um bloco de texto cifrado de comprimento igual. Normalmente, um tamanho de bloco de 64 ou 128 bits é usado. Como ocorre com uma cifra de fluxo, os dois usuários compartilham uma chave de criptografia simétrica (Figura \ref{fig:imagem_block_cipher}).
 
-                \begin{figure}[H]
+                \begin{figure}[h]
                      \centering
                      \includegraphics[scale=0.7]{figuras/capitulo_2/block_cipher.png}
                      \caption{Cifrador de Bloco- Imagem retirada de \cite{cryptograpy_and_network_stallings}.}
@@ -73,7 +73,7 @@
 
                 A Figura \ref{fig:public_private_encryption} explica como um remetente criptografa o texto claro usando a chave pública de um destinatário, que gera o texto cifrado, que será transmitido pela rede para o receptor. Uma vez que chegue ao receptor, o texto pode ser decifrado usando a chave privada do receptor. Desta forma, a chave privada permanece no lado do receptor e não há necessidade de compartilhar chaves, a fim de realizar a cifração e a decifração, que é o caso da criptografia simétrica \cite{mastering_blockchain}.
 
-                    \begin{figure}[H]
+                    \begin{figure}[h]
                          \centering
                          \includegraphics[scale=0.6]{figuras/capitulo_2/public_private_encryption.png}
                          \caption{Criptografia e descriptografia usando chave público/privada - Imagem retirada de \cite{mastering_blockchain}.}
@@ -83,7 +83,7 @@
                     
                 A Figura \ref{fig:public_private_signature} mostra como a criptografia de chave pública pode ser usada para verificar a integridade da mensagem recebida pelo receptor. Nesse modelo, o remetente assina os dados usando sua chave privada e transmite a mensagem para o receptor. Quando a mensagem é recebida no lado do receptor, pode ter sua integridade verificada através do processamento com a chave pública do remetente. Observe que não há busca de confidencialidade/sigilo neste modelo \cite{mastering_blockchain}. Este modelo é usado apenas para fins de autenticação e validação de mensagem.
                     
-                    \begin{figure}[H]
+                    \begin{figure}[h]
                          \centering
                          \includegraphics[scale=0.7]{figuras/capitulo_2/public_private_signature.png}
                          \caption{Modelo de esquema assinatura por criptografia de chave pública - Imagem retirada de \cite{mastering_blockchain}.}
@@ -100,7 +100,7 @@
 
         A Figura \ref{fig:hash_function} mostra o funcionamento geral de uma função hash criptográfica. Normalmente, a entrada é preenchida com um inteiro múltiplo de algum comprimento fixo (por exemplo, 1024 bits) e o preenchimento inclui o valor do comprimento da mensagem original em bits. O campo de comprimento é uma medida de segurança para aumentar a dificuldade de um invasor para produzir uma mensagem alternativa com o mesmo valor de hash \cite{cryptograpy_and_network_stallings}.
     
-                \begin{figure}[H]
+                \begin{figure}[h]
                      \centering
                      \includegraphics[scale=0.5]{figuras/capitulo_2/hash_function.png}
                      \caption{Diagrama de função de hash criptográfica; h = H(M) - Imagem retirada de \cite{cryptograpy_and_network_stallings}.}
@@ -116,7 +116,7 @@
         
             Um \textbf{ponteiro de hash (hash pointer)} é um hash criptográfico apontando para um bloco de dados, onde o ponteiro de hash é o hash do próprio bloco de dados (Figura \ref{fig:hash_pointer}). Ao contrário das listas vinculadas que apontam para o próximo bloco para que você possa chegar até ele, os ponteiros de hash apontam para o bloco de dados anterior e fornecem uma maneira de verificar se os dados não foram adulterados  \cite{beginnig_blockchain_bikramaditya}.
             
-                \begin{figure}[H]
+                \begin{figure}[h]
                      \centering
                      \includegraphics[scale=0.8]{figuras/capitulo_2/hash_pointer.png}
                      \caption{Ponteiro Hash para um bloco de dados - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}.}
@@ -125,7 +125,7 @@
             
             O objetivo do ponteiro de hash é construir uma cadeia de blocos que pode ser considerada como uma fonte única de verdade. Seu funcionamento se baseia no fato que o hash do bloco anterior é armazenado no cabeçalho do bloco atual e o hash do bloco atual com o cabeçalho do bloco será armazenado no cabeçalho do próximo bloco. Isso cria uma cadeia de blocos como podemos ver na Figura \ref{fig:blocks_linked_hash_pointers}  \cite{beginnig_blockchain_bikramaditya}.
             
-                \begin{figure}[H]
+                \begin{figure}[h]
                      \centering
                      \includegraphics[scale=0.8]{figuras/capitulo_2/blocks_linked_hash_pointers.png}
                      \caption{Blocos encadeados ligados por ponteiros hash - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}.}
@@ -139,7 +139,7 @@
             
             Uma típica Árvore Merkle pode ser representada como na Figura \ref{fig:merkle_tree_representation}.
         
-                \begin{figure}[H]
+                \begin{figure}[h]
                      \centering
                      \includegraphics[scale=0.7]{figuras/capitulo_2/merkle_tree_representation.png}
                      \caption{Representação de uma Árvore de Merkle - Imagem retirada de \cite{beginnig_blockchain_bikramaditya}}
@@ -242,47 +242,50 @@
         Um bloco é composto de uma seleção de transações organizadas de forma ordenada para que ocorra um encadeamento lógico. Esse bloco é composto por transações, e também contém uma referência ao bloco anterior. A estrutura do bloco varia de acordo com o tipo e design do Blockchain \cite{mastering_blockchain}.
         
         A Tabela \ref{tabela_estrutura_de_um_bloco} apresenta a estrutura de um bloco de forma geral.
-        
-  
-        \begin{table}[H]
+            
+        \begin{table}[h]
             \centering
             \caption{A estrutura de um bloco.}
-            \begin{tabular}{|c|l|l|ll}
-        \cline{1-3}
-        \cellcolor[HTML]{FFFFFF}\textbf{Tamanho} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{Campo}} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{Descrição}} &  &  \\ \cline{1-3}
-            4 bytes                                  & Tamanho do Bloco                                            & O tamanho do bloco, em bytes, após esse campo                   &  &  \\ \cline{1-3}
-            80 bytes                                 & Cabeçalho do Bloco                                          & Os campos do cabeçalho do bloco                                 &  &  \\ \cline{1-3}
-            1-9 bytes                                & Contador da transação                                       & Quantas transações seguem                                       &  &  \\ \cline{1-3}
-            Variável                                 & Lista de Transações / Dados                                 & As transações/dados gravados nesse bloco                              &  &  \\ \cline{1-3}
-            \end{tabular}
-        \label{tabela_estrutura_de_um_bloco}
+                \begin{tabular}{|l|l|l|}
+                \hline
+                \multicolumn{1}{|c|}{\textbf{Tamanho}} & \multicolumn{1}{c|}{\textbf{Campo}} & \multicolumn{1}{c|}{\textbf{Descrição}} \\ \hline
+                 4 bytes & Tamanho do Bloco & O tamanho do bloco, em bytes, após esse campo \\ \hline
+                 80 bytes   & Cabeçalho do Bloco & Os campos do cabeçalho do bloco  \\ \hline
+                 1-9 bytes  & Contador da transação & Quantas transações seguem  \\ \hline
+                 Variável   & Lista de Transações / Dados   & As transações/dados gravados nesse bloco\\ \hline
+                \end{tabular}
+            \label{tabela_estrutura_de_um_bloco}
         \end{table}
-            
+
+
+
+
     \subsection{Cabeçalho de um bloco}
 
     O cabeçalho do bloco consiste em três conjuntos de metadados do bloco. Primeiro, há uma referência a um hash do bloco anterior, o que conecta esse bloco ao bloco anterior na Blockchain. O segundo conjunto de metadados é composto pelos campos: a dificuldade, o registro de data e hora e o identificador único (contador), onde estes estão relacionadas à concorrência na mineração. A terceira parte dos metadados é a raiz da Árvore de Merkle, uma estrutura de dados usada para resumir eficientemente todas as transações no bloco \cite{mastering_blockchain_andreas}.
 
     A Tabela \ref{tabela_estrutura_cabecalho_de_um_bloco} apresenta a estrutura de um cabeçalho de um bloco de forma geral.
     
-    
-    \begin{table}[H]
+
+    \begin{table}[h]
         \centering
         \caption{Estrutura do cabeçalho de um bloco.}
         \begin{adjustbox}{width=\textwidth}
-
-        \begin{tabular}{|c|l|l|ll}
-        \cline{1-3}
-        \cellcolor[HTML]{FFFFFF}\textbf{Tamanho} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{Campo}} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{Descrição}} &  &  \\ \cline{1-3}
-        4 bytes                                  & Versão                                                      & A versão numérica para controle de atualizações                 &  &  \\ \cline{1-3}
-        32 bytes                                 & Hash do bloco anterior                                      & Uma referência ao hash do bloco anterior (pai) na cadeia        &  &  \\ \cline{1-3}
-        32 bytes                                 & Raiz da Árvore de Merkle                                    & Um hash da raiz da Árvore de Merkle das transações deste bloco  &  &  \\ \cline{1-3}
-        4 bytes                                  & Timestamp                                                   & O tempo aproximado de criação deste bloco                       &  &  \\ \cline{1-3}
-        4 bytes                                  & Dificuldade                                                 & A dificuldade do algoritmo de prova de trabalho para este bloco &  &  \\ \cline{1-3}
-        4 bytes                                  & Identificador Único                                         & Um contador usado para o algoritmo de prova de trabalho         &  &  \\ \cline{1-3}
-        \end{tabular}
+            \begin{tabular}{|l|l|l|}
+            \hline
+            \multicolumn{1}{|c|}{\textbf{Tamanho}} & \multicolumn{1}{c|}{\textbf{Campo}} & \multicolumn{1}{c|}{\textbf{Descrição}} \\ \hline
+             4 bytes & Versão   & A versão numérica para controle de atualizações  \\ \hline
+             32 bytes & Hash do bloco anterior   & Uma referência ao hash do bloco anterior (pai) na cadeia \\ \hline
+             32 bytes & Raiz da Árvore de Merkle    & Um hash da raiz da Árvore de Merkle das transações deste bloco  \\ \hline
+             4 bytes  & Timestamp  & O tempo aproximado de criação deste bloco  \\ \hline
+             4 bytes  & Dificuldade  & A dificuldade do algoritmo de prova de trabalho para este bloco  \\ \hline
+             4 bytes  & Identificador Único  & Um contador usado para o algoritmo de prova de trabalho  \\ \hline
+            \end{tabular}
         \end{adjustbox}
         \label{tabela_estrutura_cabecalho_de_um_bloco}
-\end{table}
+    \end{table}
+
+
 
 
     \subsection{Block Header Hash e Block Height, identificadores de um bloco}
@@ -304,7 +307,7 @@
         Cada blockchain tem seus próprios algoritmos para criar um acordo dentro de sua rede nas entradas adicionadas, onde o processo de entrada pode ser visualizado na Figura \ref{fig:blockchain_work_dummies}. Existem muitos modelos diferentes para criar consenso porque cada blockchain está criando diferentes tipos de entradas. Alguns dos blockchains são de valor comercial, outros armazenam dados e outras estão protegendo sistemas e contratos \cite{blockchain_for_dummies}.
         
         
-                \begin{figure}[H]
+                \begin{figure}[h]
                      \centering
                      \includegraphics[scale=0.7]{figuras/capitulo_2/blockchain_come_to_agreement.png}
                      \caption{Funcionamento do Blockchain - Imagem retirada de \cite{blockchain_for_dummies}.}
@@ -361,7 +364,7 @@ Um aplicativo descentralizado (Dapp) é como qualquer outro aplicativo moderno a
 
 A Figura \ref{fig:dapp_ethereum} representa um exemplo da estrutura de um aplicativo descentralizado.
 
-    \begin{figure}[H]
+    \begin{figure}[h]
          \centering
          \includegraphics[scale=0.5]{figuras/capitulo_2/ethereum_dapp_structure.png}
          \caption{Aplicação Descentralizada Ethereum - Imagem retirada de \cite{blockchain_pratical_guide}.}
