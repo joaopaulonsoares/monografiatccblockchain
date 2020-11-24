@@ -24,7 +24,7 @@ Para a realização do trabalho, algumas premissas serão tomadas como base para
     \end{enumerate}
 
 
-\section{Aplicação}
+\section{Aplicação proposta}
 
 Uma aplicação descentralizada será criada para tornar o processo de registro infrações de trânsito transparente e descentralizado. O framework Angular será usado para implementar o \textit{front-end} e os contratos inteligentes da plataforma Ethereum serão usados no \textit{back-end}. 
 
@@ -34,9 +34,9 @@ Os contratos inteligentes escritos em \verb|solidity| para a rede Ethereum no ba
 
 \subsection{Arquitetura Proposta}
 
-A arquitetura da aplicação será no estilo cliente servidor. O Dapp conterá duas partes principais: o contrato, sendo executado na rede Ethereum, e o aplicativo cliente sendo executado localmente no computador do usuário.
+A arquitetura da aplicação será no estilo cliente servidor. O Dapp conterá duas partes principais: o contrato, sendo executado na rede Ethereum, e a aplicação cliente sendo executado localmente no computador do usuário.
 
-Exemplo da comunicação:
+Um exemplo dessa arquitetura pode ser vista na imagem de número \ref{fig:dapp_representacao}.
 
     \begin{figure}[h]
          \centering
@@ -49,7 +49,7 @@ Exemplo da comunicação:
 
 \subsection{Funcionalidades}
 
-De forma a contemplar o máximo de situações contempladas no sistema RENAINF respeitando a regulação presente no CTB, o sistema conterá as seguintes funcionalidades:
+De forma a contemplar o máximo de situações contempladas no sistema RENAINF e respeitando a regulação presente no CTB, o sistema conterá as seguintes funcionalidades:
 
 
     \subsubsection{Registro de Infração}
@@ -64,9 +64,9 @@ De forma a contemplar o máximo de situações contempladas no sistema RENAINF r
                 \item Data/Hora da Infração
                 \item Pontos da Infração
                 \item Observações
-                \item Administrador responsável pela aplicação
+                \item Chave do administrador responsável pelo registro
+                \item Chave do motorista responsável pelo veículo
                 \item Preço para pagamento da infração (valor em ethers)
-                \item Data limite para pagamento
             \end{itemize}
             
         \end{quote}
@@ -94,16 +94,16 @@ De forma a contemplar o máximo de situações contempladas no sistema RENAINF r
     
     \subsubsection{Pagar Infração}
     
-        O pagamento da infração poderá ser realizada pelo usuário indicado como responsável pela infração. Para este pagamento serão utilizadas as moedas virtuais da rede Ethereum, de acordo com o valor indicado na infração acrescido das taxas necessárias para a realização da transação.O pagamento de uma infração corresponde à ação de transferir os valores referentes ao pagamento da infração para a conta da união registrada na rede blockchain.
+        O pagamento da infração poderá ser realizada pelo usuário indicado como responsável pela infração. Para este pagamento serão utilizadas as moedas virtuais da rede Ethereum, de acordo com o valor indicado na infração acrescido das taxas necessárias para a realização da transação(GAS). O pagamento de uma infração corresponde à ação de transferir os valores referentes ao pagamento da infração para a conta da autoridade que registrou a infração.
     
     
     \subsubsection{Recurso / Cancelamento de uma infração}
     
         Ao visualizar a infração o usuário (A) indicado como responsável também poderá entrar com recurso em relação a infração registrada. Esta condição se aplica a casos onde o usuário não concorda com a infração registrada ou possui uma explicação plausível que pode acarretar na anulação da mesma.
         
-        Para realizar esta ação o usuário (A) deverá clicar na opção disponível, preencher as informações solicitadas e assinar a solicitação usando sua chave. Essa solicitação irá para análise por parte de um usuário(B) administrador, e o mesmo poderá recusar ou aceitar a solicitação realizada.
+        Para realizar esta ação o usuário (A) deverá clicar na opção disponível, preencher as informações solicitadas e assinar a solicitação usando sua chave. Essa solicitação irá para análise por parte de um usuário(B) administrador com perfil indicado como um Junta de Trânsito, e o mesmo poderá recusar ou aceitar a solicitação realizada.
         
-        Caso o usuário (B) administrador aceite o recurso realizado, uma transação será inserida no blockchain anulando a infração registrada anteriormente e removendo a responsabilidade do usuário (A) em relação a mesma.
+        Caso o usuário (B) administrador aceite o recurso realizado, uma transação será inserida no blockchain anulando a infração registrada anteriormente e removendo a responsabilidade do usuário (A) em relação a mesma removendo as penalidades aplicadas anteriormente.
         
         
 \subsection{Minerar moedas}
