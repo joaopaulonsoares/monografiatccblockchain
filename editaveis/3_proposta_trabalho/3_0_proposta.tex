@@ -1,6 +1,5 @@
 \chapter[Proposta de Trabalho]{Proposta de Trabalho}
 
-
 A proposta de trabalho consiste no desenvolvimento de uma aplicação descentralizada(Dapp), por meio do Ethereum, para o registro de infrações de trânsito utilizando-se da tecnologia \textit{blockchain} para garantir a integridade das informações registradas. 
 
 Será implementado um blockchain do tipo público, onde todos podem contribuir para o processo de consenso e validação dos blocos adicionados, possibilitando que qualquer pessoa interessada possa contribuir para a rede de registros. Para mais informações em relação a este tipo de blockchain, veja a Seção \ref{subsection_tipos_blockchain}
@@ -26,9 +25,9 @@ Para a realização do trabalho, algumas premissas serão tomadas como base para
 
 \section{Aplicação proposta}
 
-Uma aplicação descentralizada será criada para tornar o processo de registro infrações de trânsito transparente e descentralizado. O framework Angular será usado para implementar o \textit{front-end} e os contratos inteligentes da plataforma Ethereum serão usados no \textit{back-end}. 
+Uma aplicação descentralizada será criada para tornar o processo de registro infrações de trânsito transparente e descentralizado. A biblioteca React escrita em javascript será usado para implementar o \textit{front-end} e os contratos inteligentes da plataforma Ethereum serão usados no \textit{back-end}. 
 
-O Angular é uma estrutura JavaScript usada para criar aplicações de página única. A principal característica é que podemos criar nossos aplicativos de maneira modular, o que ajuda a reduzir a repetição de códigos e facilita a depuração. Ele também permite modificar os elementos HTML dinamicamente, facilitando a criação de páginas interativas em tempo real. 
+O Re é uma estrutura JavaScript usada para criar aplicações de página única. A principal característica é que podemos criar nossos aplicativos de maneira modular, o que ajuda a reduzir a repetição de códigos e facilita a depuração. Ele também permite modificar os elementos HTML dinamicamente, facilitando a criação de páginas interativas em tempo real. 
 
 Os contratos inteligentes escritos em \verb|solidity| para a rede Ethereum no back-end da aplicação torna o Dapp descentralizado e transparente. A linguagem \verb|solidity| também é totalmente suportada pelo Ethereum e tem uma grande comunidade ao seu redor, o que auxilia no aprendizado e na solução de possíveis empecilhos ao longo do desenvolvimento do projeto.
 
@@ -48,6 +47,7 @@ Um exemplo dessa arquitetura pode ser vista na imagem de número \ref{fig:dapp_r
 
 
 \subsection{Funcionalidades}
+\label{section:funcionalidades_propostas}
 
 De forma a contemplar o máximo de situações contempladas no sistema RENAINF e respeitando a regulação presente no CTB, o sistema conterá as seguintes funcionalidades:
 
@@ -71,10 +71,6 @@ De forma a contemplar o máximo de situações contempladas no sistema RENAINF e
             
         \end{quote}
         
-
-    
-        Junto com essas informações, um ID gerado a partir dos quatro primeiros campos também é inserido. Este ID será gerado em uma função usando SHA256, ou seja o ID será um hash desses campos. Os valores inseridos no formulário serão passados para a função de registro e os detalhes são mapeados usando o ID gerado acima. Esse mapeamento com o ID permitirá posteriormente a busca do registro ser realizada mais facilmente no blockchain.
-        
         Após confirmar as informações preenchidas, a transação será inserida no blockchain e validada por outros nós. Após este processo a infração estará disponível para que sejam realizadas as outras funções como consulta, realização de recursos e pagamento da mesma.
         
             
@@ -92,7 +88,7 @@ De forma a contemplar o máximo de situações contempladas no sistema RENAINF e
         
         Já o usuário normal terá em sua página de acesso todas as infrações que foram registradas como ele sendo o autor da infração, não sendo possível visualizar as infrações realizadas por outros usuários.
     
-    \subsubsection{Pagar Infração}
+    \subsubsection{Pagamento Infração}
     
         O pagamento da infração poderá ser realizada pelo usuário indicado como responsável pela infração. Para este pagamento serão utilizadas as moedas virtuais da rede Ethereum, de acordo com o valor indicado na infração acrescido das taxas necessárias para a realização da transação(GAS). O pagamento de uma infração corresponde à ação de transferir os valores referentes ao pagamento da infração para a conta da autoridade que registrou a infração.
     

@@ -1,5 +1,59 @@
 \begin{apendicesenv}
-
 \partapendices
+
+
+\chapter{Structs do contrato inteligente}
+\label{appendix:structs_smartContract}
+
+\begin{minted}{c}
+    struct TraficTicket{
+        uint id;
+        string vehiclePlate;
+        uint infractionCategory;
+        string dateInfraction;
+        uint infractionPoints;
+        string observations;
+        uint valueToPay;
+        string statusOfInfraction; 
+        bool payed;
+        address infractorDriverAddress;
+        address payable authorityResponsableAdress; 
+    }
+
+    struct Drivers{
+        uint id;
+        string name;
+        uint numberOfPoints;
+        address driverAddress;
+        bool exist;
+    }
+
+    struct Authorities{
+        uint id;
+        string name;
+        string sigla;
+        address authoritieAddress;
+        bool exist;
+        bool isTransitBoard;
+    }
+    
+    struct TransferTicket{
+        uint id;
+        uint ticketId;
+        uint status; // 0 -> Pending, 1 -> Accepted, 2 -> Rejected
+        address currentOwnerAddress;
+        address requestedInfractorAddress;
+    }
+    
+    struct CancelTickeRequest{
+        uint id;
+        uint ticketId;
+        uint status; // 0 -> Pending, 1 -> Accepted, 2 -> Rejected
+        string explanation;
+        address driverAddress;
+        address authorityResponsableAdress;
+        address transitBoardResponsible;
+    }
+\end{minted}
 
 \end{apendicesenv}
