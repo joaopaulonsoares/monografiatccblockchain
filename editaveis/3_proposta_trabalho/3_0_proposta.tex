@@ -27,7 +27,7 @@ Para a realização do trabalho, algumas premissas serão tomadas como base para
 
 Uma aplicação descentralizada será criada para tornar o processo de registro infrações de trânsito transparente e descentralizado. A biblioteca React escrita em javascript será usado para implementar o \textit{front-end} e os contratos inteligentes da plataforma Ethereum serão usados no \textit{back-end}. 
 
-O Re é uma estrutura JavaScript usada para criar aplicações de página única. A principal característica é que podemos criar nossos aplicativos de maneira modular, o que ajuda a reduzir a repetição de códigos e facilita a depuração. Ele também permite modificar os elementos HTML dinamicamente, facilitando a criação de páginas interativas em tempo real. 
+O ReactJs é uma biblioteca javaScript usada para criar interfaces de usuário. A principal característica é que podemos criar nossos aplicativos de maneira modular, o que ajuda a reduzir a repetição de códigos e facilita a depuração. Ele também permite modificar os elementos HTML dinamicamente, facilitando a criação de páginas interativas em tempo real. 
 
 Os contratos inteligentes escritos em \verb|solidity| para a rede Ethereum no back-end da aplicação torna o Dapp descentralizado e transparente. A linguagem \verb|solidity| também é totalmente suportada pelo Ethereum e tem uma grande comunidade ao seu redor, o que auxilia no aprendizado e na solução de possíveis empecilhos ao longo do desenvolvimento do projeto.
 
@@ -35,7 +35,7 @@ Os contratos inteligentes escritos em \verb|solidity| para a rede Ethereum no ba
 
 A arquitetura da aplicação será no estilo cliente servidor. O Dapp conterá duas partes principais: o contrato, sendo executado na rede Ethereum, e a aplicação cliente sendo executado localmente no computador do usuário.
 
-Um exemplo dessa arquitetura pode ser vista na imagem de número \ref{fig:dapp_representacao}.
+Um exemplo dessa arquitetura pode ser vista na Figura \ref{fig:dapp_representacao}.
 
     \begin{figure}[h]
          \centering
@@ -104,6 +104,6 @@ De forma a contemplar o máximo de situações contempladas no sistema RENAINF e
         
 \subsection{Minerar moedas}
 
-Para minerar moedas Ethereum é necessário ter um computador com alta capacidade de processamento. O papel destes mineradores é encontrar uma sequência que torne um bloco de transações compatível com o bloco anterior. Para isso, o computador precisa efetuar milhares de cálculos por segundo para encontrar a combinação perfeita, por isso que eles precisam ser extremamente potentes.Ao encontrar a sequência compatível, o minerador recebe uma recompensa para cada bloco que ele minerar. Essa recompensa foi criada com a intenção de pagar as pessoas que emprestam poder computacional para manter a rede funcionando.
+Para minerar moedas Ethereum é necessário ter um computador com alta capacidade de processamento. O papel destes mineradores é encontrar uma sequência que torne um bloco de transações compatível com o bloco anterior. Para isso, o computador precisa efetuar milhares de cálculos por segundo para encontrar a combinação perfeita, por isso que eles precisam ser extremamente potentes. Ao encontrar a sequência compatível, o minerador recebe uma recompensa para cada bloco que ele minerar. Essa recompensa foi criada com a intenção de pagar as pessoas que emprestam poder computacional para manter a rede funcionando.
 
 De forma a incentivar a inserção do maior número de nós possíveis na rede atuando como mineradores, tornando a confiabilidade da rede ainda maior, o sistema englobará uma funcionalidade que permitirá que o pagamento das infrações registradas no blockchain seja feito utilizando essa recompensa monetária obtida por meio da mineração. Este incentivo beneficiará principalmente pessoas jurídicas que possuem uma grande frota de veículos automotores e serviços computacionais a disposição, como empresas locadoras de veículos e empresas de transporte urbano, pois estes poderão pagar as infrações realizadas por sua frota com um certo desconto em relação ao valor normal ao ajudar na manutenção da rede.
