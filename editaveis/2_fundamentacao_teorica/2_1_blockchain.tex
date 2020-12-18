@@ -6,7 +6,7 @@
         ``A proteção oferecida a um sistema de informações automatizado para atingir os objetivos aplicáveis de preservar a integridade, a disponibilidade e a confidencialidade dos recursos do sistema de informações (incluindo \textit{hardware}, \textit{software}, \textit{firmware}, informações / dados e telecomunicações).''
      \end{quote}
      
-     Stallings escreve em seu livro \cite{cryptograpy_and_network_stallings} que esta definição introduz os três objetivos chaves da segurança computacional, que estão descritos a seguir:
+      \citeauthor{cryptograpy_and_network_stallings}  escreve em seu livro que esta definição introduz os três objetivos chaves da segurança computacional, que estão descritos a seguir:
         
         \begin{itemize}
             \item \textbf{Confidencialidade:} assegura que uma informação privada ou confidencial não estará disponível para indivíduos não autorizados, e que o indivíduo tem controle sob suas informações;
@@ -16,7 +16,7 @@
 
     \subsection{Criptografia}
     
-    A criptografia é o componente mais importante do \textit{blockchain}. A criptografia é certamente um campo de pesquisa em si mesmo, e é baseada em técnicas matemáticas. Houve muitas falhas relatadas em carteiras e trocas de informações devido ao \textit{design} mais fraco ou implementações criptográficas frágeis \cite{beginnig_blockchain_bikramaditya}.
+    A criptografia é o componente mais importante do \textit{blockchain}. A criptografia é certamente um campo de pesquisa em si mesmo, e é baseada em técnicas matemáticas. Houve muitas falhas relatadas em carteiras, seção \ref{carteira_criptomoeda}, e trocas de informações devido ao \textit{design} mais fraco ou implementações criptográficas frágeis \cite{beginnig_blockchain_bikramaditya}.
     
     Qualquer informação na forma de uma mensagem de texto, dados numéricos ou um programa de computador pode ser chamada de texto claro. A ideia é cifrar o texto claro usando um algoritmo de cifração/decifração e uma chave que produza o texto cifrado, este último se tornando uma versão protegida do texto claro em relação a confidencialidade. O texto cifrado pode então ser transmitido ao destinatário pretendido, que o decifra usando o algoritmo de decifração e a chave para obter o texto simples.\cite{beginnig_blockchain_bikramaditya}
     
@@ -24,7 +24,7 @@
 
         \subsubsection{Modelo de criptografia simétrica}
         
-            Um sistema de criptografia simétrica é um sistema criptográfico no qual a cifração e a decifração são executadas usando a mesma chave. Também é conhecido como criptografia convencional. A criptografia simétrica transforma o texto claro em texto cifrado usando uma chave secreta e um algoritmo de cifração. Usando a mesma chave e um algoritmo de decifração, o texto original é recuperado do texto cifrado.\cite{cryptograpy_and_network_stallings}
+            Um sistema de criptografia simétrica é um sistema criptográfico no qual a cifração e a decifração são executadas usando a mesma chave. Também é conhecido como criptografia convencional. A criptografia simétrica transforma o texto claro em texto cifrado usando uma chave secreta e um algoritmo de cifração. Usando a mesma chave e um algoritmo de decifração, o texto original é recuperado do texto cifrado \cite{cryptograpy_and_network_stallings}.
             
             Assume-se que é impraticável decifrar uma mensagem com base no texto cifrado e no conhecimento do algoritmo de cifração/ decifração. Em outras palavras, não é necessário manter o algoritmo secreto; precisa-se manter apenas o segredo da chave. Esse recurso de criptografia simétrica é o que o torna viável para uso generalizado. Com o uso de criptografia simétrica, o principal problema de segurança é manter o sigilo da chave \cite{cryptograpy_and_network_stallings}.
             
@@ -51,7 +51,9 @@
                      \label{fig:imagem_stream_cipher}
                 \end{figure}
         
-            Um \textit{block cipher} ou \textbf{cifra de bloco} é aquela em que um bloco de texto simples é tratado como um todo e usado para produzir um bloco de texto cifrado de comprimento igual. Normalmente, um tamanho de bloco de 64 ou 128 bits é usado. Como ocorre com uma cifra de fluxo, os dois usuários compartilham uma chave de criptografia simétrica (Figura \ref{fig:imagem_block_cipher}).
+            Um \textit{block cipher} ou \textbf{cifra de bloco} é aquela em que um bloco de texto simples é tratado como um todo e usado para produzir um bloco de texto cifrado de comprimento igual. Normalmente, um tamanho de bloco de 64 ou 128 bits é usado. Caso o texto a ser cifrado seja maior que o tamanho do bloco utilizado, o texto é dividido em blocos do tamanho suportado e cada um dos blocos é cifrado utilizando a chave. O último bloco pode sofrer o processo de padding caso o seu tamanho seja menor que o tamanho de bloco utilizado para cifração.
+            
+            Como ocorre com uma cifra de fluxo, os dois usuários compartilham uma chave de criptografia simétrica (Figura \ref{fig:imagem_block_cipher}).
 
                 \begin{figure}[h]
                      \centering
@@ -59,6 +61,7 @@
                      \caption{Cifrador de Bloco- Imagem retirada de \cite{cryptograpy_and_network_stallings}.}
                      \label{fig:imagem_block_cipher}
                 \end{figure}
+            
             
             
         \subsubsection{Modelo de criptografia assimétrico}
@@ -111,7 +114,7 @@
         
         Outra família de funções hash amplamente utilizada é a \textbf{Secure Hash Algorithm (SHA)}. Existem basicamente quatro algoritmos nessa família: SHA-0, SHA-1, SHA-2 e SHA-3 \cite{beginnig_blockchain_bikramaditya}.
 
-	É importante ressaltar que alguns destes algoritmos MD e o SHA1 hoje são considerados não seguros, pois é possível que a colisão seja provocada com menos tentativas que o espero inicialmente pelo algoritmo. O trabalho de \cite{collision_sha1} exemplifica este caso na quebra do algoritmo SHA1.
+	É importante ressaltar que alguns destes algoritmos como o MD, SHA-0 e o SHA-1 hoje são considerados não seguros, pois é possível que a colisão seja provocada com menos tentativas que o espero inicialmente pelo algoritmo. O trabalho de \citeauthor{collision_sha1} exemplifica este caso na quebra do algoritmo SHA1.
     
         \subsubsection{Ponteiros Hash}
         
@@ -187,7 +190,7 @@
                     \item Se o processo de origem for um processo correto, todos os processos devem decidir sobre o valor que foi original dado pelo processo de origem.
                 \end{enumerate}
     
-            Em seu artigo \citeonline{byzantine_problem_article} apresentam diferentes soluções que podem ser adotadas para solucionar este problema de consenso entre os generais. Estas abordagens descritas foram utilizadas na concepção da rede Blockchain como insumo para a criação dos diferentes protocolos de consenso utilizados para gerenciar esta rede distribuída.   
+            Em seu artigo \citeauthor{}{byzantine_problem_article} apresentam diferentes soluções que podem ser adotadas para solucionar este problema de consenso entre os generais. Estas abordagens descritas foram utilizadas na concepção da rede Blockchain como insumo para a criação dos diferentes protocolos de consenso utilizados para gerenciar esta rede distribuída.   
     
     
    
@@ -206,7 +209,7 @@
     
     A abstração para o entendimento de sistemas Blockchain é a noção de livro razão(Ledger), uma invenção desenvolvida pelos renascentistas italianos para suportar escrituração de dupla entrada, um precursor distante das criptomoedas modernas. Um livro contábil é apenas um registro indelével e unificado de transações que ocorrem entre várias partes. Um livro-razão estabelece quais transações aconteceram e a ordem em que essas transações aconteceram. Livros razão são públicos, acessíveis a todas as partes, e devem ser à prova de falsificação: nenhuma das partes pode adicionar, excluir ou modificar as entradas do livro, uma vez gravadas \cite{blockchain_computing_perspective}.
     
-    Pode se definir blockchain, em termos técnicos, como: “um blockchain é um ledger distribuído de transações implementadas como dados agrupados em blocos que usam validação criptográfica para vincular os blocos. Cada bloco referencia e identifica o bloco anterior usando uma função de \textit{hashing} que forma uma cadeia ininterrupta (isto é, blockchain)” \cite{blockchain_pratical_guide}.
+    Pode-se definir blockchain, em termos técnicos, como: “é um ledger distribuído de transações implementadas como dados agrupados em blocos que usam validação criptográfica para vincular os blocos. Cada bloco referencia e identifica o bloco anterior usando uma função de \textit{hashing} que forma uma cadeia ininterrupta (isto é, blockchain)” \cite{blockchain_pratical_guide}.
     
     De um ponto de vista empresarial, podemos caracterizar Blockchain como uma plataforma onde diferentes nós podem realizar troca de valores utilizando transações sem a necessidade de uma terceira parte autenticadora.
     
@@ -352,7 +355,7 @@ No Ethereum as chamadas “mensagens” se assemelham as transações no Bitcoin
 
 Um contrato inteligente no Ethereum é uma caixa protegida criptograficamente que contém lógica e valor. A lógica tem condições específicas que precisam ser atendidas para liberar o valor. É a adição de lógica e estado que torna o Ethereum uma plataforma mais poderosa do que a que está disponível com outras criptomoedas, incluindo o Bitcoin (e sua funcionalidade de script). Um exemplo de um contrato inteligente para uma empresa de seguros poderia ser utilizado para pagar automaticamente para a entidade segurada com base em um feed de dados que mostrassem que um evento pagável ocorreu.\cite{blockchain_pratical_guide}
 
-Contratos inteligentes permitem aplicativos descentralizados (Dapps). Aplicativos centralizados são serviços realmente centralizados. Por exemplo, quando interagimos com um aplicativo de terceiros em nosso \textit{smartphone}, o aplicativo se comunicará com servidores e serviços centralizados. Um Dapp pode ser exatamente o mesmo em termos da interface do usuário, mas os serviços de \textit{back-end} são substituídos por contratos inteligentes que são executados na rede Ethereum descentralizada \cite{blockchain_pratical_guide}.
+Contratos inteligentes permitem aplicativos descentralizados (Dapps). Por exemplo, quando interagimos com um aplicativo de terceiros em nosso \textit{smartphone}, o aplicativo se comunicará com servidores e serviços centralizados. Um Dapp pode ser exatamente o mesmo em termos da interface do usuário, mas os serviços de \textit{back-end} são substituídos por contratos inteligentes que são executados na rede Ethereum descentralizada \cite{blockchain_pratical_guide}.
 
 O mecanismo de contrato descrito acima permite que qualquer pessoa construa o que é essencialmente um aplicativo de linha de comando executado em uma máquina virtual que é executada por consenso em toda a rede, permitindo modificar um estado globalmente acessível como seu “disco rígido”.
 No entanto, para a maioria das pessoas, a interface de linha de comando que é o mecanismo de envio de transações não é suficientemente amigável ao usuário para tornar a descentralização uma alternativa convencional atraente. Para este fim, uma aplicação descentralizada completa deve consistir em
@@ -371,3 +374,11 @@ A Figura \ref{fig:dapp_ethereum} representa um exemplo da estrutura de um aplica
          \caption{Aplicação Descentralizada Ethereum - Imagem retirada de \cite{blockchain_pratical_guide}.}
          \label{fig:dapp_ethereum}
     \end{figure}
+    
+\section{Carteira de Criptomoeda}
+\label{carteira_criptomoeda}
+
+Uma carteira digital para criptomoedas é um programa de software que contém chaves públicas e privadas e funciona com sucesso em diferentes blocos de blocos que permitem aos usuários trocar moedas entre si e controlar o saldo de sua moeda. Uma carteira digital pode armazenar, enviar e receber moedas diferentes. As criptomoedas não são armazenadas como dinheiro físico na carteira. Cada transação é registrada e armazenada no blockchain. Enviar um Bitcoin ou alguma outra moeda para um usuário significaria enviar sua própria chave pública. Se o usuário deve receber o pagamento, sua chave privada deve estar de acordo com a chave pública do remetente. Não há troca real de moedas. A transação é concluída com um registro no blockchain e uma mudança na carteira digital do usuário. \cite{wallet_guide}
+
+As carteiras de criptomoeda podem ser divididas em duas categorias principais: carteiras frias e carteiras quentes. A diferença entre dois deles é que para carteiras quentes é necessária uma conexão à Internet e para carteiras frias não. Os usuários de hot wallet costumam usá-los para comprar algo na internet e manter uma pequena quantia de dinheiro para esse fim, enquanto cold wallet é como um cofre no banco para armazenar diferentes tipos de valores digitais. O melhor é ter as duas carteiras principalmente por motivos de segurança. As carteiras quentes e frias podem ser divididas em várias categorias: carteiras online, carteiras de hardware, carteiras móveis, carteiras de papel e carteiras de mesa. As carteiras online, mobile, de mesa e multisignature pertencem a uma categoria de carteira quente e hardware, o papel pertence a uma categoria de carteira fria. Dependendo da escolha da carteira digital, cada uma tem seu próprio nível de segurança para garantir a proteção da chave privada. \cite{inproceedings}
+

@@ -6,9 +6,9 @@ Será implementado um blockchain do tipo público, onde todos podem contribuir p
 
 Para auxiliar nos testes e uso da aplicação descentralizada durante o desenvolvimento, serão utilizadas duas ferramentas: Ganache e o Metamask. 
 
-O \href{https://www.trufflesuite.com/docs/ganache/quickstart}{Ganache} permite ativar e gerenciar rapidamente um blockchain Ethereum pessoal para executar testes, executar comandos e inspecionar o estado do mesmo enquanto controla como a cadeia de blocos opera tanto pelo terminal de operações do computador como por uma interface gráfica. Dessa maneira pode-se testar os contratos inteligentes desenvolvidos sem o custo da rede Ethereum principal. 
+O Ganache \footnote{https://www.trufflesuite.com/docs/ganache/quickstart} permite ativar e gerenciar rapidamente um blockchain Ethereum pessoal para executar testes, executar comandos e inspecionar o estado do mesmo enquanto controla como a cadeia de blocos opera tanto pelo terminal de operações do computador como por uma interface gráfica. Dessa maneira pode-se testar os contratos inteligentes desenvolvidos sem o custo da rede Ethereum principal. 
 
-O \href{https://metamask.io/}{Metamask} é um plug-in adicionado ao navegador, que serve como uma ponte para conectar-se à rede desejada e injetar uma instância web3 no código. O Metamask possibilita selecionar e navegar entre diferentes redes (como uma rede local ou a principal Ethereum), assim como disponibiliza uma interface para gerenciar uma carteira digital com diferentes contas. Esta funcionalidade possibilitará que os diferentes níveis de restrições de usuários, como o usuário normal e o administrador, sejam testados durante todo o processo de desenvolvimento de forma prática.
+O Metamask \footnote{https://metamask.io/} é uma carteira virtual e pode ser adicionada ao navegador como um plugin, que serve como uma ponte para conectar-se à rede desejada e injetar uma instância web3 no código. O Metamask possibilita selecionar e navegar entre diferentes redes (como uma rede local ou a principal Ethereum), assim como disponibiliza uma interface para gerenciar uma carteira digital com diferentes contas. Esta funcionalidade possibilitará que os diferentes níveis de restrições de usuários, como o usuário normal e o administrador, sejam testados durante todo o processo de desenvolvimento de forma prática.
 
 
 
@@ -16,7 +16,7 @@ O \href{https://metamask.io/}{Metamask} é um plug-in adicionado ao navegador, q
 Para a realização do trabalho, algumas premissas serão tomadas como base para seu desenvolvimento. As premissas são:
 
     \begin{enumerate}
-        \item O sistema funcionará como o RENAINF(vide seção \ref{section_renainf}), onde funcionará como o sistema único para registro de infrações em todo o território nacional. Onde todas infrações serão registradas nesta plataforma, mesmo caso o infrator tenha o carro licenciado na unidade federativa onde ocorreu a violação da norma;
+        \item O sistema funcionará como o RENAINF(vide Seção \ref{section_renainf}), ou seja o sistema único para registro de infrações em todo o território nacional, onde todas infrações serão registradas nesta plataforma, mesmo caso o infrator tenha o carro licenciado na unidade federativa onde ocorreu a violação da norma;
         \item Cada órgão ou entidade do sistema nacional de trânsito terá sua representação no sistema por meio de uma conta de administrador;
         \item Serão utilizados bancos de dados auxiliares para simular as bases de dados de condutores habilitados e veículos registrados, de forma que essas informações possam ser obtidas para o registro da infração;
         \item Cada condutor habilitado terá seu próprio conjunto de chaves público/privada, onde a chave pública será salva junto ao registro do condutor no banco de dados auxiliar responsável por esta informação.
@@ -54,7 +54,7 @@ De forma a contemplar o máximo de situações contempladas no sistema RENAINF e
 
     \subsubsection{Registro de Infração}
     
-        No registro de uma infração, os órgãos ou entidades registrados como administradores vão inserir no sistema as informações relacionadas ao registro de infração. Nesta plataforma inicialmente não serão registrados todos os campos elencados no CTB (Seção \ref{estrutura_auto_infracao}), as informações que serão cadastrados no sistema para o registro da infração de forma a contemplar as informações nesses campos são:
+        No registro de uma infração, os órgãos ou entidades registrados como administradores vão inserir no sistema as informações relacionadas ao registro de infração. Nesta plataforma inicialmente não serão registrados todos os campos elencados no CTB (Seção \ref{estrutura_auto_infracao}), as informações que serão cadastradas no sistema para o registro da infração de forma a contemplar as informações nesses campos são:
         
         \begin{quote}
         
